@@ -63,7 +63,7 @@ def build_run_parameters(
     cluster_algo: str,
     dbscan_min_samples: int | None = None,
     kmeans_info: dict | None = None,
-    relevance_threshold: float | None = None,
+    relevance_percentile: float | None = None,
     relevance_min_length: int | None = None,
     relevance_path: str | None = None,
 ) -> list[tuple[str, str]]:
@@ -106,8 +106,8 @@ def build_run_parameters(
         params.append(("kmeans chosen k", str(k) if k is not None else "(too few codes to cluster)"))
         params.append(("kmeans silhouette score", f"{score:.3f}" if score is not None else "(n/a)"))
 
-    if relevance_threshold is not None:
-        params.append(("relevance threshold", str(relevance_threshold)))
+    if relevance_percentile is not None:
+        params.append(("relevance percentile (bottom N% flagged)", f"{relevance_percentile:.1f}"))
         params.append(("relevance min length", str(relevance_min_length)))
         params.append(("relevance question file", relevance_path or "(none)"))
 

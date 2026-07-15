@@ -265,21 +265,32 @@ class RelevanceFlag:
 def scan_relevance(
     codes: list[str],
     rq_texts: list[str],
-    threshold: float = 0.1,
+    percentile: float = 10.0,
     min_length: int = RELEVANCE_MIN_LENGTH,
 ) -> list[RelevanceFlag]:
     """Flag codes for human review instead of auto-deciding relevance - a
     plain keyword-absence filter was tried before this and threw too many
-    false positives on real codebooks."""
+    false positives on real codebooks.
+
+    Ranked relative to this corpus (bottom `percentile`%), not an absolute
+    cosine cutoff - deductive/theory-driven codebooks often have almost no
+    literal wording overlap with the research questions even when a code is
+    clearly on-topic, since the similarity model is purely lexical. An
+    absolute threshold flagged nearly an entire codebook in that case; the
+    relative ranking still separates on-topic from off-topic codes even when
+    every absolute score is low."""
     vec = TfidfVectorizer(analyzer=TFIDF_ANALYZER, ngram_range=TFIDF_NGRAM_RANGE)
     X = vec.fit_transform(codes)
     rq_X = vec.transform(rq_texts)
     max_sim = cosine_similarity(X, rq_X).max(axis=1)
+    cutoff = np.percentile(max_sim, percentile)
 
     flags = []
     for i, code in enumerate(codes):
         if len(code) < min_length:
             flags.append(RelevanceFlag(i, "too short for a reliable n-gram signal"))
-        elif max_sim[i] < threshold:
-            flags.append(RelevanceFlag(i, "low similarity to the stated research questions"))
+        elif max_sim[i] <= cutoff:
+            flags.append(RelevanceFlag(
+                i, f"relatively low similarity to the stated research questions (bottom {percentile:.0f}% of this codebook)"
+            ))
     return flags
