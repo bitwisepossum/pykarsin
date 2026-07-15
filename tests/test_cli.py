@@ -37,6 +37,79 @@ def test_scan_yes_reports_known_near_duplicates():
     assert "verkkosivu" in output.lower()
 
 
+def test_scan_dbscan_reports_known_near_duplicates():
+    code, output = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "dbscan"])
+    assert code == 0
+    assert "jonotusaika" in output.lower()
+    assert "verkkosivu" in output.lower()
+
+
+def test_scan_kmeans_reports_known_near_duplicates():
+    code, output = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "kmeans"])
+    assert code == 0
+    assert "jonotusaika" in output.lower()
+    assert "verkkosivu" in output.lower()
+
+
+def test_scan_all_cluster_algos_reports_known_near_duplicates():
+    # console table titles get width-truncated by rich, so provenance text
+    # isn't reliably checkable here - see the markdown export test below
+    code, output = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all"])
+    assert code == 0
+    assert "jonotusaika" in output.lower()
+    assert "verkkosivu" in output.lower()
+
+
+def test_scan_all_cluster_algos_exports_provenance(tmp_path):
+    out = tmp_path / "review.md"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all", "--export", "markdown", "--export-path", str(out)])
+    assert code == 0
+    assert "found by:" in out.read_text(encoding="utf-8").lower()
+
+
+def test_scan_all_cluster_algos_exports_run_parameters(tmp_path):
+    out = tmp_path / "review.md"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all", "--export", "markdown", "--export-path", str(out)])
+    assert code == 0
+    text = out.read_text(encoding="utf-8")
+    assert "## Run parameters" in text
+    assert "kmeans silhouette score" in text
+    assert "dbscan eps" in text
+    assert "min pairwise similarity" in text
+
+
+def test_scan_unionfind_run_parameters_omit_dbscan_and_kmeans_rows(tmp_path):
+    out = tmp_path / "review.csv"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "unionfind", "--export", "csv", "--export-path", str(out)])
+    assert code == 0
+    text = out.read_text(encoding="utf-8").lower()
+    assert "clustering algorithm" in text
+    assert "dbscan eps" not in text
+    assert "kmeans chosen k" not in text
+
+
+def test_scan_all_cluster_algos_exports_raw_algorithm_comparison(tmp_path):
+    md_path = tmp_path / "review.md"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all", "--export", "markdown", "--export-path", str(md_path)])
+    assert code == 0
+    md_text = md_path.read_text(encoding="utf-8").lower()
+    assert "## algorithm comparison" in md_text
+    assert "### unionfind" in md_text
+    assert "### dbscan" in md_text
+
+    csv_path = tmp_path / "review.csv"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all", "--export", "csv", "--export-path", str(csv_path)])
+    assert code == 0
+    assert "algo_comparison" in csv_path.read_text(encoding="utf-8").lower()
+
+
+def test_scan_single_algo_export_omits_algorithm_comparison(tmp_path):
+    out = tmp_path / "review.md"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "unionfind", "--export", "markdown", "--export-path", str(out)])
+    assert code == 0
+    assert "algorithm comparison" not in out.read_text(encoding="utf-8").lower()
+
+
 def test_scan_dry_run_excludes_merged_rows_by_default():
     total, merged_count = _fixture_counts()
     active = total - merged_count
@@ -139,6 +212,7 @@ def test_scan_interactive_prompts_accept_blank_defaults(monkeypatch):
     monkeypatch.setattr("pykarsin.cli.FloatPrompt.ask", lambda prompt, default=None, **k: default)
     monkeypatch.setattr("pykarsin.cli.Prompt.ask", _dispatch_by_substring({
         "Header prefix": "code group", "Research question": "", "Export report": "none",
+        "Clustering algorithm": "unionfind",
     }))
 
     code, output = _run(["scan", FIXTURE])
@@ -157,6 +231,7 @@ def test_scan_interactive_export_all_choice(monkeypatch, tmp_path):
     monkeypatch.setattr("pykarsin.cli.FloatPrompt.ask", lambda prompt, default=None, **k: default)
     monkeypatch.setattr("pykarsin.cli.Prompt.ask", _dispatch_by_substring({
         "Header prefix": "code group", "Research question": "", "Export report": "all", "Output directory": "",
+        "Clustering algorithm": "unionfind",
     }))
 
     code, _ = _run(["scan", str(src)])
@@ -177,6 +252,7 @@ def test_scan_interactive_does_not_reprompt_explicit_flags(monkeypatch):
     )
     monkeypatch.setattr("pykarsin.cli.Prompt.ask", _dispatch_by_substring({
         "Header prefix": "code group", "Research question": "", "Export report": "none",
+        "Clustering algorithm": "unionfind",
     }))
 
     code, _ = _run([
