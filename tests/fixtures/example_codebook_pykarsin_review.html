@@ -4,40 +4,78 @@
 <meta charset="utf-8">
 <title>pykarsin duplicate review</title>
 <style>
-body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 900px;
-       margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; font-size: 16px; }
-h1 { margin-bottom: 0.2rem; }
-.subtitle { color: #666; margin-top: 0; }
-.legend { background: #f5f5f5; border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+:root {
+  --paper: #f5f6f3;
+  --ink: #23282d;
+  --rule: #d8dad4;
+  --accent-danger: #9c3b3b;
+  --accent-warn: #a9722c;
+  --accent-primary: #3c6e71;
+  --font-display: "Iowan Old Style", Charter, Georgia, serif;
+  --font-body: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { font-family: var(--font-body); max-width: 900px; margin: 2rem auto; padding: 0 1rem;
+       line-height: 1.5; color: var(--ink); background: var(--paper); font-size: 16px; }
+h1 { font-family: var(--font-display); font-weight: 600; margin-bottom: 0.2rem; }
+h2 { font-family: var(--font-display); font-weight: 600; }
+h3, h4 { font-family: var(--font-display); font-weight: 600; }
+.subtitle { color: #5a615f; margin-top: 0; font-family: var(--font-mono); font-size: 0.9em; }
+.stats { display: flex; flex-wrap: wrap; gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+         border-radius: 6px; overflow: hidden; margin: 1.25rem 0; }
+.stats div { flex: 1 1 8rem; background: var(--paper); padding: 0.6rem 0.9rem; }
+.stats .n { display: block; font-family: var(--font-mono); font-size: 1.4rem; font-weight: 600; }
+.stats .label { display: block; color: #5a615f; font-size: 0.8em; }
+.page-nav { position: sticky; top: 0; background: var(--paper); border-bottom: 1px solid var(--rule);
+            padding: 0.6rem 0; margin-bottom: 1.5rem; font-size: 0.85em; z-index: 1; }
+.page-nav span { color: #5a615f; margin-right: 0.4em; }
+.page-nav a { color: var(--accent-primary); text-decoration: none; margin-right: 1em; }
+.page-nav a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
+.legend { background: #eceee9; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
 .legend p { margin: 0.35rem 0; }
-section { margin: 2rem 0; padding: 1rem 1.25rem; border-radius: 6px; border-left: 4px solid #999; }
-section.high { background: #fdecea; border-left-color: #c0392b; }
-section.polarity { background: #fff8e6; border-left-color: #b7950b; }
-section.groups { background: #eaf2fb; border-left-color: #2471a3; }
-section.comparison { background: #f4eefb; border-left-color: #7d3c98; }
-section.relevance { background: #f0f0f0; border-left-color: #666; }
-section.meta { background: #f5f5f5; border-left-color: #888; }
+section { margin: 2rem 0; padding: 1rem 1.25rem; border-radius: 6px; border-left: 3px solid #999; scroll-margin-top: 3.5rem; }
+section.high { background: #f7ecec; border-left-color: var(--accent-danger); }
+section.polarity { background: #f6f0e6; border-left-color: var(--accent-warn); }
+section.groups { background: #eaf0ef; border-left-color: var(--accent-primary); }
+section.comparison { background: #eef2f1; border-left-color: var(--accent-primary); }
+section.relevance { background: #ececea; border-left-color: #6b6f6d; }
+section.meta { background: #eceee9; border-left-color: #888; }
 section h2 { margin-top: 0; }
 section h3 { margin-bottom: 0.25rem; }
-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
-th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid #ddd; }
-.empty { color: #666; font-style: italic; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; min-width: 32rem; border-collapse: collapse; margin-top: 0.75rem; }
+th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); }
+td.num, th.num { font-family: var(--font-mono); white-space: nowrap; }
+.meter { display: inline-block; width: 4rem; height: 0.6em; background: var(--rule); border-radius: 999px;
+         vertical-align: middle; margin-left: 0.5em; overflow: hidden; }
+.meter span { display: block; height: 100%; background: currentColor; width: calc(var(--v, 0) * 100%); }
+.meter.danger { color: var(--accent-danger); }
+.meter.warn { color: var(--accent-warn); }
+.meter.primary { color: var(--accent-primary); }
+.empty { color: #5a615f; font-style: italic; }
 .warning { color: #7a4b00; font-size: 0.9em; }
-.meta { color: #666; font-size: 0.9em; }
-footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.meta { color: #5a615f; font-size: 0.9em; }
+footer { color: #5a615f; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+@media (max-width: 600px) {
+  .page-nav { position: static; }
+}
 </style>
 </head>
 <body>
 <h1>Duplicate review</h1>
 <p class="subtitle">538 codes scanned.</p>
-<section class="meta">
+<div class="stats"><div><span class="n">6</span><span class="label">high confidence</span></div><div><span class="n">3</span><span class="label">check polarity</span></div><div><span class="n">12</span><span class="label">related groups</span></div><div><span class="n">3</span><span class="label">algorithms compared</span></div></div>
+<nav class="page-nav"><span>On this page:</span><a href="#meta">Parameters</a><a href="#high">High confidence</a><a href="#polarity">Check polarity</a><a href="#groups">Related groups</a><a href="#comparison">Algorithm comparison</a></nav>
+<section class="meta" id="meta">
 <h2>Run parameters</h2>
-<table><tr><th>Parameter</th><th>Value</th></tr>
+<div class="table-wrap"><table><tr><th>Parameter</th><th>Value</th></tr>
 <tr><td>pykarsin version</td><td>0.1.0</td></tr>
 <tr><td>python version</td><td>3.13.12</td></tr>
 <tr><td>numpy version</td><td>2.5.1</td></tr>
 <tr><td>scikit-learn version</td><td>1.9.0</td></tr>
-<tr><td>generated at (UTC)</td><td>2026-07-15T06:04:37+00:00</td></tr>
+<tr><td>generated at (UTC)</td><td>2026-07-15T06:21:08+00:00</td></tr>
 <tr><td>input CSV</td><td>tests/fixtures/example_codebook.csv</td></tr>
 <tr><td>code column</td><td>Code</td></tr>
 <tr><td>comment column</td><td>Comment</td></tr>
@@ -59,7 +97,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <tr><td>kmeans k search range</td><td>2-20</td></tr>
 <tr><td>kmeans chosen k</td><td>15</td></tr>
 <tr><td>kmeans silhouette score</td><td>0.206</td></tr>
-</table>
+</table></div>
 </section>
 <div class="legend">
 <p><strong>High confidence:</strong> these code pairs look like near-duplicates. Consider merging.</p>
@@ -68,29 +106,29 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <p><strong>Needs human read:</strong> codes that don't closely match your research questions, or are very short.</p>
 <p>This tool compares wording, not meaning. Always check the original excerpts before merging or deleting anything.</p>
 </div>
-<section class="high">
+<section class="high" id="high">
 <h2>High confidence</h2>
-<table><tr><th>Score</th><th>Row A</th><th>Code A</th><th>Row B</th><th>Code B</th></tr>
-<tr><td>0.760</td><td>2</td><td>Jonotusaika koettiin liian pitkäksi</td><td>3</td><td>Jonotusaika koettiin kohtuuttoman pitkäksi</td></tr>
-<tr><td>0.652</td><td>158</td><td>Verkkosivusto: Saavutettavuus vaikutti hyvältä</td><td>375</td><td>Saavutettavuus</td></tr>
-<tr><td>0.650</td><td>158</td><td>Verkkosivusto: Saavutettavuus vaikutti hyvältä</td><td>337</td><td>Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä</td></tr>
-<tr><td>0.648</td><td>5</td><td>Verkkosivuston käyttöliittymä koettiin sekavaksi</td><td>6</td><td>Verkkosivuston rakenne koettiin sekavaksi</td></tr>
-<tr><td>0.618</td><td>12</td><td>Tuote vastasi asiakkaan odotuksia</td><td>168</td><td>Tuotteen laatu: Väri vastasi odotuksia</td></tr>
-<tr><td>0.601</td><td>290</td><td>Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan</td><td>421</td><td>Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan</td></tr>
-</table>
+<div class="table-wrap"><table><tr><th class="num">Score</th><th>Row A</th><th>Code A</th><th>Row B</th><th>Code B</th></tr>
+<tr><td class="num">0.760<span class="meter danger"><span style="--v:0.760"></span></span></td><td>2</td><td>Jonotusaika koettiin liian pitkäksi</td><td>3</td><td>Jonotusaika koettiin kohtuuttoman pitkäksi</td></tr>
+<tr><td class="num">0.652<span class="meter danger"><span style="--v:0.652"></span></span></td><td>158</td><td>Verkkosivusto: Saavutettavuus vaikutti hyvältä</td><td>375</td><td>Saavutettavuus</td></tr>
+<tr><td class="num">0.650<span class="meter danger"><span style="--v:0.650"></span></span></td><td>158</td><td>Verkkosivusto: Saavutettavuus vaikutti hyvältä</td><td>337</td><td>Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä</td></tr>
+<tr><td class="num">0.648<span class="meter danger"><span style="--v:0.648"></span></span></td><td>5</td><td>Verkkosivuston käyttöliittymä koettiin sekavaksi</td><td>6</td><td>Verkkosivuston rakenne koettiin sekavaksi</td></tr>
+<tr><td class="num">0.618<span class="meter danger"><span style="--v:0.618"></span></span></td><td>12</td><td>Tuote vastasi asiakkaan odotuksia</td><td>168</td><td>Tuotteen laatu: Väri vastasi odotuksia</td></tr>
+<tr><td class="num">0.601<span class="meter danger"><span style="--v:0.601"></span></span></td><td>290</td><td>Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan</td><td>421</td><td>Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan</td></tr>
+</table></div>
 </section>
-<section class="polarity">
+<section class="polarity" id="polarity">
 <h2>Check polarity</h2>
-<table><tr><th>Score</th><th>Row A</th><th>Code A</th><th>Row B</th><th>Code B</th></tr>
-<tr><td>0.856</td><td>7</td><td>Työntekijä ei osannut vastata asiakkaan kysymykseen</td><td>8</td><td>Työntekijä osasi vastata asiakkaan kysymykseen</td></tr>
-<tr><td>0.808</td><td>9</td><td>Asiakas ei kokenut tulleensa kuulluksi</td><td>10</td><td>Asiakas koki tulleensa kuulluksi</td></tr>
-<tr><td>0.776</td><td>11</td><td>Tuote ei vastannut asiakkaan odotuksia</td><td>12</td><td>Tuote vastasi asiakkaan odotuksia</td></tr>
-</table>
+<div class="table-wrap"><table><tr><th class="num">Score</th><th>Row A</th><th>Code A</th><th>Row B</th><th>Code B</th></tr>
+<tr><td class="num">0.856<span class="meter warn"><span style="--v:0.856"></span></span></td><td>7</td><td>Työntekijä ei osannut vastata asiakkaan kysymykseen</td><td>8</td><td>Työntekijä osasi vastata asiakkaan kysymykseen</td></tr>
+<tr><td class="num">0.808<span class="meter warn"><span style="--v:0.808"></span></span></td><td>9</td><td>Asiakas ei kokenut tulleensa kuulluksi</td><td>10</td><td>Asiakas koki tulleensa kuulluksi</td></tr>
+<tr><td class="num">0.776<span class="meter warn"><span style="--v:0.776"></span></span></td><td>11</td><td>Tuote ei vastannut asiakkaan odotuksia</td><td>12</td><td>Tuote vastasi asiakkaan odotuksia</td></tr>
+</table></div>
 </section>
-<section class="groups">
+<section class="groups" id="groups">
 <h2>Related groups</h2>
 <h3>Related group 1 (4 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.219</p>
+<p class="meta">Min pairwise similarity: 0.219<span class="meter primary"><span style="--v:0.219"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
@@ -100,7 +138,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 69: Asiakaskokemusta heikensi pitkä jonotusaika</li>
 </ul>
 <h3>Related group 2 (3 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <p class="meta">Found by: dbscan, kmeans, unionfind</p>
 <ul>
 <li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
@@ -108,7 +146,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
 </ul>
 <h3>Related group 3 (4 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.441</p>
+<p class="meta">Min pairwise similarity: 0.441<span class="meter primary"><span style="--v:0.441"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
@@ -118,14 +156,14 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
 </ul>
 <h3>Related group 4 (2 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.580</p>
+<p class="meta">Min pairwise similarity: 0.580<span class="meter primary"><span style="--v:0.580"></span></span></p>
 <p class="meta">Found by: kmeans</p>
 <ul>
 <li>row 10: Asiakas koki tulleensa kuulluksi</li>
 <li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
 </ul>
 <h3>Related group 5 (4 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.383</p>
+<p class="meta">Min pairwise similarity: 0.383<span class="meter primary"><span style="--v:0.383"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
@@ -135,21 +173,21 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 355: Asiakaskokemus: Kokemus vastasi odotuksia</li>
 </ul>
 <h3>Related group 6 (2 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.506</p>
+<p class="meta">Min pairwise similarity: 0.506<span class="meter primary"><span style="--v:0.506"></span></span></p>
 <p class="meta">Found by: dbscan, kmeans, unionfind</p>
 <ul>
 <li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
 <li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
 </ul>
 <h3>Related group 7 (2 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.588</p>
+<p class="meta">Min pairwise similarity: 0.588<span class="meter primary"><span style="--v:0.588"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <ul>
 <li>row 48: Valitusprosessi</li>
 <li>row 63: Palautusprosessi</li>
 </ul>
 <h3>Related group 8 (3 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.404</p>
+<p class="meta">Min pairwise similarity: 0.404<span class="meter primary"><span style="--v:0.404"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <ul>
 <li>row 89: Asiakaspalvelu: Ohjeet jäivät epäselviksi</li>
@@ -157,7 +195,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 484: Hinnoittelu: Alennuksen ehdot jäivät epäselviksi asiakkaalle</li>
 </ul>
 <h3>Related group 9 (3 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.536</p>
+<p class="meta">Min pairwise similarity: 0.536<span class="meter primary"><span style="--v:0.536"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <ul>
 <li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
@@ -165,7 +203,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 375: Saavutettavuus</li>
 </ul>
 <h3>Related group 10 (3 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <ul>
 <li>row 192: Tuotteen laatu: Tuote vaikutti turvalliselta käyttää</li>
@@ -173,26 +211,26 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 395: Tietoturva ja luottamus: Maksaminen vaikutti turvalliselta</li>
 </ul>
 <h3>Related group 11 (2 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.537</p>
+<p class="meta">Min pairwise similarity: 0.537<span class="meter primary"><span style="--v:0.537"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <ul>
 <li>row 248: Hinnoittelu: Hinta tuntui epäoikeudenmukaiselta</li>
 <li>row 284: Valitusprosessi: Käsittely koettiin epäoikeudenmukaiseksi</li>
 </ul>
 <h3>Related group 12 (2 codes)</h3>
-<p class="meta">Min pairwise similarity: 0.520</p>
+<p class="meta">Min pairwise similarity: 0.520<span class="meter primary"><span style="--v:0.520"></span></span></p>
 <p class="meta">Found by: dbscan, unionfind</p>
 <ul>
 <li>row 261: Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa</li>
 <li>row 363: Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa</li>
 </ul>
 </section>
-<section class="comparison">
+<section class="comparison" id="comparison">
 <h2>Algorithm comparison</h2>
 <p>Each algorithm's raw, unmerged output - use this to verify the &#8220;Found by&#8221; labels above yourself.</p>
 <h3>unionfind</h3>
 <h4>Group 1 (4 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.219</p>
+<p class="meta">Min pairwise similarity: 0.219<span class="meter primary"><span style="--v:0.219"></span></span></p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
 <li>row 2: Jonotusaika koettiin liian pitkäksi</li>
@@ -201,20 +239,20 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 69: Asiakaskokemusta heikensi pitkä jonotusaika</li>
 </ul>
 <h4>Group 2 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <ul>
 <li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
 <li>row 5: Verkkosivuston käyttöliittymä koettiin sekavaksi</li>
 <li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
 </ul>
 <h4>Group 3 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.856</p>
+<p class="meta">Min pairwise similarity: 0.856<span class="meter primary"><span style="--v:0.856"></span></span></p>
 <ul>
 <li>row 7: Työntekijä ei osannut vastata asiakkaan kysymykseen</li>
 <li>row 8: Työntekijä osasi vastata asiakkaan kysymykseen</li>
 </ul>
 <h4>Group 4 (4 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.441</p>
+<p class="meta">Min pairwise similarity: 0.441<span class="meter primary"><span style="--v:0.441"></span></span></p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
 <li>row 9: Asiakas ei kokenut tulleensa kuulluksi</li>
@@ -223,7 +261,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
 </ul>
 <h4>Group 5 (4 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.383</p>
+<p class="meta">Min pairwise similarity: 0.383<span class="meter primary"><span style="--v:0.383"></span></span></p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
 <li>row 11: Tuote ei vastannut asiakkaan odotuksia</li>
@@ -232,59 +270,59 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 355: Asiakaskokemus: Kokemus vastasi odotuksia</li>
 </ul>
 <h4>Group 6 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.506</p>
+<p class="meta">Min pairwise similarity: 0.506<span class="meter primary"><span style="--v:0.506"></span></span></p>
 <ul>
 <li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
 <li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
 </ul>
 <h4>Group 7 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.588</p>
+<p class="meta">Min pairwise similarity: 0.588<span class="meter primary"><span style="--v:0.588"></span></span></p>
 <ul>
 <li>row 48: Valitusprosessi</li>
 <li>row 63: Palautusprosessi</li>
 </ul>
 <h4>Group 8 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.404</p>
+<p class="meta">Min pairwise similarity: 0.404<span class="meter primary"><span style="--v:0.404"></span></span></p>
 <ul>
 <li>row 89: Asiakaspalvelu: Ohjeet jäivät epäselviksi</li>
 <li>row 136: Verkkosivusto: Virheilmoitukset jäivät epäselviksi</li>
 <li>row 484: Hinnoittelu: Alennuksen ehdot jäivät epäselviksi asiakkaalle</li>
 </ul>
 <h4>Group 9 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.536</p>
+<p class="meta">Min pairwise similarity: 0.536<span class="meter primary"><span style="--v:0.536"></span></span></p>
 <ul>
 <li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
 <li>row 337: Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä</li>
 <li>row 375: Saavutettavuus</li>
 </ul>
 <h4>Group 10 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <ul>
 <li>row 192: Tuotteen laatu: Tuote vaikutti turvalliselta käyttää</li>
 <li>row 387: Tietoturva ja luottamus: Palvelu vaikutti turvalliselta</li>
 <li>row 395: Tietoturva ja luottamus: Maksaminen vaikutti turvalliselta</li>
 </ul>
 <h4>Group 11 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.537</p>
+<p class="meta">Min pairwise similarity: 0.537<span class="meter primary"><span style="--v:0.537"></span></span></p>
 <ul>
 <li>row 248: Hinnoittelu: Hinta tuntui epäoikeudenmukaiselta</li>
 <li>row 284: Valitusprosessi: Käsittely koettiin epäoikeudenmukaiseksi</li>
 </ul>
 <h4>Group 12 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.520</p>
+<p class="meta">Min pairwise similarity: 0.520<span class="meter primary"><span style="--v:0.520"></span></span></p>
 <ul>
 <li>row 261: Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa</li>
 <li>row 363: Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa</li>
 </ul>
 <h4>Group 13 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.601</p>
+<p class="meta">Min pairwise similarity: 0.601<span class="meter primary"><span style="--v:0.601"></span></span></p>
 <ul>
 <li>row 290: Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan</li>
 <li>row 421: Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan</li>
 </ul>
 <h3>dbscan</h3>
 <h4>Group 1 (4 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.219</p>
+<p class="meta">Min pairwise similarity: 0.219<span class="meter primary"><span style="--v:0.219"></span></span></p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
 <li>row 2: Jonotusaika koettiin liian pitkäksi</li>
@@ -293,20 +331,20 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 69: Asiakaskokemusta heikensi pitkä jonotusaika</li>
 </ul>
 <h4>Group 2 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <ul>
 <li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
 <li>row 5: Verkkosivuston käyttöliittymä koettiin sekavaksi</li>
 <li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
 </ul>
 <h4>Group 3 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.856</p>
+<p class="meta">Min pairwise similarity: 0.856<span class="meter primary"><span style="--v:0.856"></span></span></p>
 <ul>
 <li>row 7: Työntekijä ei osannut vastata asiakkaan kysymykseen</li>
 <li>row 8: Työntekijä osasi vastata asiakkaan kysymykseen</li>
 </ul>
 <h4>Group 4 (4 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.441</p>
+<p class="meta">Min pairwise similarity: 0.441<span class="meter primary"><span style="--v:0.441"></span></span></p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
 <li>row 9: Asiakas ei kokenut tulleensa kuulluksi</li>
@@ -315,7 +353,7 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
 </ul>
 <h4>Group 5 (4 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.383</p>
+<p class="meta">Min pairwise similarity: 0.383<span class="meter primary"><span style="--v:0.383"></span></span></p>
 <p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
 <ul>
 <li>row 11: Tuote ei vastannut asiakkaan odotuksia</li>
@@ -324,96 +362,96 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <li>row 355: Asiakaskokemus: Kokemus vastasi odotuksia</li>
 </ul>
 <h4>Group 6 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.506</p>
+<p class="meta">Min pairwise similarity: 0.506<span class="meter primary"><span style="--v:0.506"></span></span></p>
 <ul>
 <li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
 <li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
 </ul>
 <h4>Group 7 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.588</p>
+<p class="meta">Min pairwise similarity: 0.588<span class="meter primary"><span style="--v:0.588"></span></span></p>
 <ul>
 <li>row 48: Valitusprosessi</li>
 <li>row 63: Palautusprosessi</li>
 </ul>
 <h4>Group 8 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.404</p>
+<p class="meta">Min pairwise similarity: 0.404<span class="meter primary"><span style="--v:0.404"></span></span></p>
 <ul>
 <li>row 89: Asiakaspalvelu: Ohjeet jäivät epäselviksi</li>
 <li>row 136: Verkkosivusto: Virheilmoitukset jäivät epäselviksi</li>
 <li>row 484: Hinnoittelu: Alennuksen ehdot jäivät epäselviksi asiakkaalle</li>
 </ul>
 <h4>Group 9 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.536</p>
+<p class="meta">Min pairwise similarity: 0.536<span class="meter primary"><span style="--v:0.536"></span></span></p>
 <ul>
 <li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
 <li>row 337: Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä</li>
 <li>row 375: Saavutettavuus</li>
 </ul>
 <h4>Group 10 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <ul>
 <li>row 192: Tuotteen laatu: Tuote vaikutti turvalliselta käyttää</li>
 <li>row 387: Tietoturva ja luottamus: Palvelu vaikutti turvalliselta</li>
 <li>row 395: Tietoturva ja luottamus: Maksaminen vaikutti turvalliselta</li>
 </ul>
 <h4>Group 11 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.537</p>
+<p class="meta">Min pairwise similarity: 0.537<span class="meter primary"><span style="--v:0.537"></span></span></p>
 <ul>
 <li>row 248: Hinnoittelu: Hinta tuntui epäoikeudenmukaiselta</li>
 <li>row 284: Valitusprosessi: Käsittely koettiin epäoikeudenmukaiseksi</li>
 </ul>
 <h4>Group 12 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.520</p>
+<p class="meta">Min pairwise similarity: 0.520<span class="meter primary"><span style="--v:0.520"></span></span></p>
 <ul>
 <li>row 261: Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa</li>
 <li>row 363: Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa</li>
 </ul>
 <h4>Group 13 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.601</p>
+<p class="meta">Min pairwise similarity: 0.601<span class="meter primary"><span style="--v:0.601"></span></span></p>
 <ul>
 <li>row 290: Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan</li>
 <li>row 421: Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan</li>
 </ul>
 <h3>kmeans</h3>
 <h4>Group 1 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.760</p>
+<p class="meta">Min pairwise similarity: 0.760<span class="meter primary"><span style="--v:0.760"></span></span></p>
 <ul>
 <li>row 2: Jonotusaika koettiin liian pitkäksi</li>
 <li>row 3: Jonotusaika koettiin kohtuuttoman pitkäksi</li>
 </ul>
 <h4>Group 2 (3 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.512</p>
+<p class="meta">Min pairwise similarity: 0.512<span class="meter primary"><span style="--v:0.512"></span></span></p>
 <ul>
 <li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
 <li>row 5: Verkkosivuston käyttöliittymä koettiin sekavaksi</li>
 <li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
 </ul>
 <h4>Group 3 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.856</p>
+<p class="meta">Min pairwise similarity: 0.856<span class="meter primary"><span style="--v:0.856"></span></span></p>
 <ul>
 <li>row 7: Työntekijä ei osannut vastata asiakkaan kysymykseen</li>
 <li>row 8: Työntekijä osasi vastata asiakkaan kysymykseen</li>
 </ul>
 <h4>Group 4 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.580</p>
+<p class="meta">Min pairwise similarity: 0.580<span class="meter primary"><span style="--v:0.580"></span></span></p>
 <ul>
 <li>row 10: Asiakas koki tulleensa kuulluksi</li>
 <li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
 </ul>
 <h4>Group 5 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.776</p>
+<p class="meta">Min pairwise similarity: 0.776<span class="meter primary"><span style="--v:0.776"></span></span></p>
 <ul>
 <li>row 11: Tuote ei vastannut asiakkaan odotuksia</li>
 <li>row 12: Tuote vastasi asiakkaan odotuksia</li>
 </ul>
 <h4>Group 6 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.506</p>
+<p class="meta">Min pairwise similarity: 0.506<span class="meter primary"><span style="--v:0.506"></span></span></p>
 <ul>
 <li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
 <li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
 </ul>
 <h4>Group 7 (2 codes)</h4>
-<p class="meta">Min pairwise similarity: 0.652</p>
+<p class="meta">Min pairwise similarity: 0.652<span class="meter primary"><span style="--v:0.652"></span></span></p>
 <ul>
 <li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
 <li>row 375: Saavutettavuus</li>
