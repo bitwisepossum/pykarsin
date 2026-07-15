@@ -14,6 +14,7 @@ section { margin: 2rem 0; padding: 1rem 1.25rem; border-radius: 6px; border-left
 section.high { background: #fdecea; border-left-color: #c0392b; }
 section.polarity { background: #fff8e6; border-left-color: #b7950b; }
 section.groups { background: #eaf2fb; border-left-color: #2471a3; }
+section.comparison { background: #f4eefb; border-left-color: #7d3c98; }
 section.relevance { background: #f0f0f0; border-left-color: #666; }
 section.meta { background: #f5f5f5; border-left-color: #888; }
 section h2 { margin-top: 0; }
@@ -36,8 +37,8 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <tr><td>python version</td><td>3.13.12</td></tr>
 <tr><td>numpy version</td><td>2.5.1</td></tr>
 <tr><td>scikit-learn version</td><td>1.9.0</td></tr>
-<tr><td>generated at (UTC)</td><td>2026-07-15T05:30:58+00:00</td></tr>
-<tr><td>input CSV</td><td>example_codebook.csv</td></tr>
+<tr><td>generated at (UTC)</td><td>2026-07-15T06:04:37+00:00</td></tr>
+<tr><td>input CSV</td><td>tests/fixtures/example_codebook.csv</td></tr>
 <tr><td>code column</td><td>Code</td></tr>
 <tr><td>comment column</td><td>Comment</td></tr>
 <tr><td>group columns</td><td>Code Group 1, Code Group 2</td></tr>
@@ -184,6 +185,238 @@ footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid
 <ul>
 <li>row 261: Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa</li>
 <li>row 363: Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa</li>
+</ul>
+</section>
+<section class="comparison">
+<h2>Algorithm comparison</h2>
+<p>Each algorithm's raw, unmerged output - use this to verify the &#8220;Found by&#8221; labels above yourself.</p>
+<h3>unionfind</h3>
+<h4>Group 1 (4 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.219</p>
+<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
+<ul>
+<li>row 2: Jonotusaika koettiin liian pitkäksi</li>
+<li>row 3: Jonotusaika koettiin kohtuuttoman pitkäksi</li>
+<li>row 23: Verkkosivusto: Sivuston latausaika koettiin pitkäksi</li>
+<li>row 69: Asiakaskokemusta heikensi pitkä jonotusaika</li>
+</ul>
+<h4>Group 2 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.512</p>
+<ul>
+<li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
+<li>row 5: Verkkosivuston käyttöliittymä koettiin sekavaksi</li>
+<li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
+</ul>
+<h4>Group 3 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.856</p>
+<ul>
+<li>row 7: Työntekijä ei osannut vastata asiakkaan kysymykseen</li>
+<li>row 8: Työntekijä osasi vastata asiakkaan kysymykseen</li>
+</ul>
+<h4>Group 4 (4 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.441</p>
+<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
+<ul>
+<li>row 9: Asiakas ei kokenut tulleensa kuulluksi</li>
+<li>row 10: Asiakas koki tulleensa kuulluksi</li>
+<li>row 291: Valitusprosessi: Asiakas koki tulleensa kohdelluksi asiallisesti</li>
+<li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
+</ul>
+<h4>Group 5 (4 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.383</p>
+<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
+<ul>
+<li>row 11: Tuote ei vastannut asiakkaan odotuksia</li>
+<li>row 12: Tuote vastasi asiakkaan odotuksia</li>
+<li>row 168: Tuotteen laatu: Väri vastasi odotuksia</li>
+<li>row 355: Asiakaskokemus: Kokemus vastasi odotuksia</li>
+</ul>
+<h4>Group 6 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.506</p>
+<ul>
+<li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
+<li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
+</ul>
+<h4>Group 7 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.588</p>
+<ul>
+<li>row 48: Valitusprosessi</li>
+<li>row 63: Palautusprosessi</li>
+</ul>
+<h4>Group 8 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.404</p>
+<ul>
+<li>row 89: Asiakaspalvelu: Ohjeet jäivät epäselviksi</li>
+<li>row 136: Verkkosivusto: Virheilmoitukset jäivät epäselviksi</li>
+<li>row 484: Hinnoittelu: Alennuksen ehdot jäivät epäselviksi asiakkaalle</li>
+</ul>
+<h4>Group 9 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.536</p>
+<ul>
+<li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
+<li>row 337: Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä</li>
+<li>row 375: Saavutettavuus</li>
+</ul>
+<h4>Group 10 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.512</p>
+<ul>
+<li>row 192: Tuotteen laatu: Tuote vaikutti turvalliselta käyttää</li>
+<li>row 387: Tietoturva ja luottamus: Palvelu vaikutti turvalliselta</li>
+<li>row 395: Tietoturva ja luottamus: Maksaminen vaikutti turvalliselta</li>
+</ul>
+<h4>Group 11 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.537</p>
+<ul>
+<li>row 248: Hinnoittelu: Hinta tuntui epäoikeudenmukaiselta</li>
+<li>row 284: Valitusprosessi: Käsittely koettiin epäoikeudenmukaiseksi</li>
+</ul>
+<h4>Group 12 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.520</p>
+<ul>
+<li>row 261: Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa</li>
+<li>row 363: Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa</li>
+</ul>
+<h4>Group 13 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.601</p>
+<ul>
+<li>row 290: Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan</li>
+<li>row 421: Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan</li>
+</ul>
+<h3>dbscan</h3>
+<h4>Group 1 (4 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.219</p>
+<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
+<ul>
+<li>row 2: Jonotusaika koettiin liian pitkäksi</li>
+<li>row 3: Jonotusaika koettiin kohtuuttoman pitkäksi</li>
+<li>row 23: Verkkosivusto: Sivuston latausaika koettiin pitkäksi</li>
+<li>row 69: Asiakaskokemusta heikensi pitkä jonotusaika</li>
+</ul>
+<h4>Group 2 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.512</p>
+<ul>
+<li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
+<li>row 5: Verkkosivuston käyttöliittymä koettiin sekavaksi</li>
+<li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
+</ul>
+<h4>Group 3 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.856</p>
+<ul>
+<li>row 7: Työntekijä ei osannut vastata asiakkaan kysymykseen</li>
+<li>row 8: Työntekijä osasi vastata asiakkaan kysymykseen</li>
+</ul>
+<h4>Group 4 (4 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.441</p>
+<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
+<ul>
+<li>row 9: Asiakas ei kokenut tulleensa kuulluksi</li>
+<li>row 10: Asiakas koki tulleensa kuulluksi</li>
+<li>row 291: Valitusprosessi: Asiakas koki tulleensa kohdelluksi asiallisesti</li>
+<li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
+</ul>
+<h4>Group 5 (4 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.383</p>
+<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>
+<ul>
+<li>row 11: Tuote ei vastannut asiakkaan odotuksia</li>
+<li>row 12: Tuote vastasi asiakkaan odotuksia</li>
+<li>row 168: Tuotteen laatu: Väri vastasi odotuksia</li>
+<li>row 355: Asiakaskokemus: Kokemus vastasi odotuksia</li>
+</ul>
+<h4>Group 6 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.506</p>
+<ul>
+<li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
+<li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
+</ul>
+<h4>Group 7 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.588</p>
+<ul>
+<li>row 48: Valitusprosessi</li>
+<li>row 63: Palautusprosessi</li>
+</ul>
+<h4>Group 8 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.404</p>
+<ul>
+<li>row 89: Asiakaspalvelu: Ohjeet jäivät epäselviksi</li>
+<li>row 136: Verkkosivusto: Virheilmoitukset jäivät epäselviksi</li>
+<li>row 484: Hinnoittelu: Alennuksen ehdot jäivät epäselviksi asiakkaalle</li>
+</ul>
+<h4>Group 9 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.536</p>
+<ul>
+<li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
+<li>row 337: Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä</li>
+<li>row 375: Saavutettavuus</li>
+</ul>
+<h4>Group 10 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.512</p>
+<ul>
+<li>row 192: Tuotteen laatu: Tuote vaikutti turvalliselta käyttää</li>
+<li>row 387: Tietoturva ja luottamus: Palvelu vaikutti turvalliselta</li>
+<li>row 395: Tietoturva ja luottamus: Maksaminen vaikutti turvalliselta</li>
+</ul>
+<h4>Group 11 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.537</p>
+<ul>
+<li>row 248: Hinnoittelu: Hinta tuntui epäoikeudenmukaiselta</li>
+<li>row 284: Valitusprosessi: Käsittely koettiin epäoikeudenmukaiseksi</li>
+</ul>
+<h4>Group 12 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.520</p>
+<ul>
+<li>row 261: Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa</li>
+<li>row 363: Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa</li>
+</ul>
+<h4>Group 13 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.601</p>
+<ul>
+<li>row 290: Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan</li>
+<li>row 421: Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan</li>
+</ul>
+<h3>kmeans</h3>
+<h4>Group 1 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.760</p>
+<ul>
+<li>row 2: Jonotusaika koettiin liian pitkäksi</li>
+<li>row 3: Jonotusaika koettiin kohtuuttoman pitkäksi</li>
+</ul>
+<h4>Group 2 (3 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.512</p>
+<ul>
+<li>row 4: Verkkosivun ulkoasu koettiin sekavaksi</li>
+<li>row 5: Verkkosivuston käyttöliittymä koettiin sekavaksi</li>
+<li>row 6: Verkkosivuston rakenne koettiin sekavaksi</li>
+</ul>
+<h4>Group 3 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.856</p>
+<ul>
+<li>row 7: Työntekijä ei osannut vastata asiakkaan kysymykseen</li>
+<li>row 8: Työntekijä osasi vastata asiakkaan kysymykseen</li>
+</ul>
+<h4>Group 4 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.580</p>
+<ul>
+<li>row 10: Asiakas koki tulleensa kuulluksi</li>
+<li>row 426: Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi</li>
+</ul>
+<h4>Group 5 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.776</p>
+<ul>
+<li>row 11: Tuote ei vastannut asiakkaan odotuksia</li>
+<li>row 12: Tuote vastasi asiakkaan odotuksia</li>
+</ul>
+<h4>Group 6 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.506</p>
+<ul>
+<li>row 13: Pelkää että valitus johtaa huonompaan kohteluun</li>
+<li>row 14: Kokee joutuneensa huonompaan kohteluun valituksen jälkeen</li>
+</ul>
+<h4>Group 7 (2 codes)</h4>
+<p class="meta">Min pairwise similarity: 0.652</p>
+<ul>
+<li>row 158: Verkkosivusto: Saavutettavuus vaikutti hyvältä</li>
+<li>row 375: Saavutettavuus</li>
 </ul>
 </section>
 <footer>Generated by pykarsin - review manually before merging or deleting codebook entries.</footer>
