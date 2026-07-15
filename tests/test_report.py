@@ -109,6 +109,8 @@ def test_export_html_contains_expected_sections(tmp_path):
     assert "High confidence" in text
     assert "Related group" in text
     assert "chaining artifact" in text
+    assert 'class="meter' in text
+    assert 'class="table-wrap"' in text
 
 
 def test_export_html_escapes_special_characters(tmp_path):

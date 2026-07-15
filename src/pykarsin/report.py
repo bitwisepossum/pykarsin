@@ -355,63 +355,108 @@ def _esc(value) -> str:
 
 
 _HTML_STYLE = """
-body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 900px;
-       margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; font-size: 16px; }
-h1 { margin-bottom: 0.2rem; }
-.subtitle { color: #666; margin-top: 0; }
-.legend { background: #f5f5f5; border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+:root {
+  --paper: #f5f6f3;
+  --ink: #23282d;
+  --rule: #d8dad4;
+  --accent-danger: #9c3b3b;
+  --accent-warn: #a9722c;
+  --accent-primary: #3c6e71;
+  --font-display: "Iowan Old Style", Charter, Georgia, serif;
+  --font-body: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { font-family: var(--font-body); max-width: 900px; margin: 2rem auto; padding: 0 1rem;
+       line-height: 1.5; color: var(--ink); background: var(--paper); font-size: 16px; }
+h1 { font-family: var(--font-display); font-weight: 600; margin-bottom: 0.2rem; }
+h2 { font-family: var(--font-display); font-weight: 600; }
+h3, h4 { font-family: var(--font-display); font-weight: 600; }
+.subtitle { color: #5a615f; margin-top: 0; font-family: var(--font-mono); font-size: 0.9em; }
+.stats { display: flex; flex-wrap: wrap; gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+         border-radius: 6px; overflow: hidden; margin: 1.25rem 0; }
+.stats div { flex: 1 1 8rem; background: var(--paper); padding: 0.6rem 0.9rem; }
+.stats .n { display: block; font-family: var(--font-mono); font-size: 1.4rem; font-weight: 600; }
+.stats .label { display: block; color: #5a615f; font-size: 0.8em; }
+.page-nav { position: sticky; top: 0; background: var(--paper); border-bottom: 1px solid var(--rule);
+            padding: 0.6rem 0; margin-bottom: 1.5rem; font-size: 0.85em; z-index: 1; }
+.page-nav span { color: #5a615f; margin-right: 0.4em; }
+.page-nav a { color: var(--accent-primary); text-decoration: none; margin-right: 1em; }
+.page-nav a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
+.legend { background: #eceee9; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
 .legend p { margin: 0.35rem 0; }
-section { margin: 2rem 0; padding: 1rem 1.25rem; border-radius: 6px; border-left: 4px solid #999; }
-section.high { background: #fdecea; border-left-color: #c0392b; }
-section.polarity { background: #fff8e6; border-left-color: #b7950b; }
-section.groups { background: #eaf2fb; border-left-color: #2471a3; }
-section.comparison { background: #f4eefb; border-left-color: #7d3c98; }
-section.relevance { background: #f0f0f0; border-left-color: #666; }
-section.meta { background: #f5f5f5; border-left-color: #888; }
+section { margin: 2rem 0; padding: 1rem 1.25rem; border-radius: 6px; border-left: 3px solid #999; scroll-margin-top: 3.5rem; }
+section.high { background: #f7ecec; border-left-color: var(--accent-danger); }
+section.polarity { background: #f6f0e6; border-left-color: var(--accent-warn); }
+section.groups { background: #eaf0ef; border-left-color: var(--accent-primary); }
+section.comparison { background: #eef2f1; border-left-color: var(--accent-primary); }
+section.relevance { background: #ececea; border-left-color: #6b6f6d; }
+section.meta { background: #eceee9; border-left-color: #888; }
 section h2 { margin-top: 0; }
 section h3 { margin-bottom: 0.25rem; }
-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
-th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid #ddd; }
-.empty { color: #666; font-style: italic; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; min-width: 32rem; border-collapse: collapse; margin-top: 0.75rem; }
+th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); }
+td.num, th.num { font-family: var(--font-mono); white-space: nowrap; }
+.meter { display: inline-block; width: 4rem; height: 0.6em; background: var(--rule); border-radius: 999px;
+         vertical-align: middle; margin-left: 0.5em; overflow: hidden; }
+.meter span { display: block; height: 100%; background: currentColor; width: calc(var(--v, 0) * 100%); }
+.meter.danger { color: var(--accent-danger); }
+.meter.warn { color: var(--accent-warn); }
+.meter.primary { color: var(--accent-primary); }
+.empty { color: #5a615f; font-style: italic; }
 .warning { color: #7a4b00; font-size: 0.9em; }
-.meta { color: #666; font-size: 0.9em; }
-footer { color: #888; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.meta { color: #5a615f; font-size: 0.9em; }
+footer { color: #5a615f; font-size: 0.85em; margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+@media (max-width: 600px) {
+  .page-nav { position: static; }
+}
 """
 
 
-def _html_pair_section(title: str, css_class: str, records, pairs, empty_msg: str) -> str:
-    lines = [f'<section class="{css_class}">', f"<h2>{_esc(title)}</h2>"]
+def _html_meter(value: float, accent: str) -> str:
+    # value is a cosine similarity, already 0-1 - the bar is a scannable
+    # companion to the number, never a replacement for it
+    return f'<span class="meter {accent}"><span style="--v:{value:.3f}"></span></span>'
+
+
+def _html_pair_section(title: str, css_class: str, section_id: str, accent: str, records, pairs, empty_msg: str) -> str:
+    lines = [f'<section class="{css_class}" id="{section_id}">', f"<h2>{_esc(title)}</h2>"]
     if not pairs:
         lines.append(f'<p class="empty">{_esc(empty_msg)}</p>')
     else:
-        lines.append("<table><tr><th>Score</th><th>Row A</th><th>Code A</th><th>Row B</th><th>Code B</th></tr>")
+        lines.append('<div class="table-wrap"><table><tr><th class="num">Score</th><th>Row A</th><th>Code A</th><th>Row B</th><th>Code B</th></tr>')
         for p in pairs:
             a, b = records[p.i], records[p.j]
             lines.append(
-                f"<tr><td>{p.score:.3f}</td><td>{a.row}</td><td>{_esc(a.code)}</td>"
+                f'<tr><td class="num">{p.score:.3f}{_html_meter(p.score, accent)}</td><td>{a.row}</td><td>{_esc(a.code)}</td>'
                 f"<td>{b.row}</td><td>{_esc(b.code)}</td></tr>"
             )
-        lines.append("</table>")
+        lines.append("</table></div>")
     lines.append("</section>")
     return "\n".join(lines)
 
 
 def _html_parameters_section(params: list[tuple[str, str]]) -> str:
-    lines = ['<section class="meta">', "<h2>Run parameters</h2>", "<table><tr><th>Parameter</th><th>Value</th></tr>"]
+    lines = [
+        '<section class="meta" id="meta">', "<h2>Run parameters</h2>",
+        '<div class="table-wrap"><table><tr><th>Parameter</th><th>Value</th></tr>',
+    ]
     for label, value in params:
         lines.append(f"<tr><td>{_esc(label)}</td><td>{_esc(value)}</td></tr>")
-    lines.append("</table>")
+    lines.append("</table></div>")
     lines.append("</section>")
     return "\n".join(lines)
 
 
 def _html_clusters_section(records, clusters) -> str:
-    lines = ['<section class="groups">', "<h2>Related groups</h2>"]
+    lines = ['<section class="groups" id="groups">', "<h2>Related groups</h2>"]
     if not clusters:
         lines.append('<p class="empty">No related groups found.</p>')
     for idx, c in enumerate(clusters, start=1):
         lines.append(f"<h3>Related group {idx} ({len(c.members)} codes)</h3>")
-        lines.append(f'<p class="meta">Min pairwise similarity: {c.min_similarity:.3f}</p>')
+        lines.append(f'<p class="meta">Min pairwise similarity: {c.min_similarity:.3f}{_html_meter(c.min_similarity, "primary")}</p>')
         if c.algos:
             lines.append(f'<p class="meta">Found by: {_esc(", ".join(sorted(c.algos)))}</p>')
         if c.chaining_warning:
@@ -426,7 +471,7 @@ def _html_clusters_section(records, clusters) -> str:
 
 def _html_algo_comparison_section(records, by_algo: dict[str, list[ClusterCandidate]]) -> str:
     lines = [
-        '<section class="comparison">',
+        '<section class="comparison" id="comparison">',
         "<h2>Algorithm comparison</h2>",
         "<p>Each algorithm's raw, unmerged output - use this to verify the &#8220;Found by&#8221; "
         "labels above yourself.</p>",
@@ -438,7 +483,7 @@ def _html_algo_comparison_section(records, by_algo: dict[str, list[ClusterCandid
         lines.append(f"<h3>{_esc(algo)}</h3>")
         for idx, c in enumerate(clusters, start=1):
             lines.append(f"<h4>Group {idx} ({len(c.members)} codes)</h4>")
-            lines.append(f'<p class="meta">Min pairwise similarity: {c.min_similarity:.3f}</p>')
+            lines.append(f'<p class="meta">Min pairwise similarity: {c.min_similarity:.3f}{_html_meter(c.min_similarity, "primary")}</p>')
             if c.chaining_warning:
                 lines.append('<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>')
             lines.append("<ul>")
@@ -450,17 +495,46 @@ def _html_algo_comparison_section(records, by_algo: dict[str, list[ClusterCandid
 
 
 def _html_relevance_section(records, flags: list[RelevanceFlag]) -> str:
-    lines = ['<section class="relevance">', "<h2>Needs human read (relevance)</h2>"]
+    lines = ['<section class="relevance" id="relevance">', "<h2>Needs human read (relevance)</h2>"]
     if not flags:
         lines.append('<p class="empty">No relevance flags - every code matched the research questions reasonably well.</p>')
     else:
-        lines.append("<table><tr><th>Row</th><th>Code</th><th>Reason</th></tr>")
+        lines.append('<div class="table-wrap"><table><tr><th>Row</th><th>Code</th><th>Reason</th></tr>')
         for f in flags:
             r = records[f.index]
             lines.append(f"<tr><td>{r.row}</td><td>{_esc(r.code)}</td><td>{_esc(f.reason)}</td></tr>")
-        lines.append("</table>")
+        lines.append("</table></div>")
     lines.append("</section>")
     return "\n".join(lines)
+
+
+def _html_stats_strip(report: Report, by_algo, relevance_flags) -> str:
+    stats = [
+        (len(report.high), "high confidence"),
+        (len(report.check_polarity), "check polarity"),
+        (len(report.clusters), "related groups"),
+    ]
+    if by_algo:
+        stats.append((len(CLUSTER_ALGORITHMS), "algorithms compared"))
+    if relevance_flags is not None:
+        stats.append((len(relevance_flags), "needs human read"))
+    cells = "".join(f'<div><span class="n">{n}</span><span class="label">{_esc(label)}</span></div>' for n, label in stats)
+    return f'<div class="stats">{cells}</div>'
+
+
+def _html_nav(report: Report, params, by_algo, relevance_flags) -> str:
+    links = []
+    if params:
+        links.append(("meta", "Parameters"))
+    links.append(("high", "High confidence"))
+    links.append(("polarity", "Check polarity"))
+    links.append(("groups", "Related groups"))
+    if by_algo:
+        links.append(("comparison", "Algorithm comparison"))
+    if relevance_flags is not None:
+        links.append(("relevance", "Needs human read"))
+    anchors = "".join(f'<a href="#{sid}">{_esc(label)}</a>' for sid, label in links)
+    return f'<nav class="page-nav"><span>On this page:</span>{anchors}</nav>'
 
 
 def export_html(
@@ -480,6 +554,8 @@ def export_html(
         "<body>",
         "<h1>Duplicate review</h1>",
         f'<p class="subtitle">{len(records)} codes scanned.</p>',
+        _html_stats_strip(report, by_algo, relevance_flags),
+        _html_nav(report, params, by_algo, relevance_flags),
     ]
     if params:
         parts.append(_html_parameters_section(params))
@@ -495,8 +571,8 @@ def export_html(
         "<p>This tool compares wording, not meaning. Always check the original excerpts before merging or "
         "deleting anything.</p>",
         "</div>",
-        _html_pair_section("High confidence", "high", records, report.high, "No high-confidence duplicates found."),
-        _html_pair_section("Check polarity", "polarity", records, report.check_polarity, "No polarity-conflict pairs found."),
+        _html_pair_section("High confidence", "high", "high", "danger", records, report.high, "No high-confidence duplicates found."),
+        _html_pair_section("Check polarity", "polarity", "polarity", "warn", records, report.check_polarity, "No polarity-conflict pairs found."),
         _html_clusters_section(records, report.clusters),
     ]
     if by_algo:
