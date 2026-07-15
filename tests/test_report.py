@@ -214,7 +214,7 @@ def test_build_run_parameters_omits_algo_specific_rows_for_unionfind():
     assert "clustering algorithm" in params
     assert "dbscan eps" not in params
     assert "kmeans chosen k" not in params
-    assert "relevance threshold" not in params
+    assert "relevance percentile (bottom N% flagged)" not in params
 
 
 def test_build_run_parameters_includes_dbscan_rows():
@@ -233,9 +233,9 @@ def test_build_run_parameters_includes_kmeans_rows():
 
 def test_build_run_parameters_includes_relevance_rows_when_scanned():
     params = dict(build_run_parameters(
-        **_base_param_kwargs(relevance_threshold=0.1, relevance_min_length=12, relevance_path="rq.txt")
+        **_base_param_kwargs(relevance_percentile=10.0, relevance_min_length=12, relevance_path="rq.txt")
     ))
-    assert params["relevance threshold"] == "0.1"
+    assert params["relevance percentile (bottom N% flagged)"] == "10.0"
     assert params["relevance question file"] == "rq.txt"
 
 

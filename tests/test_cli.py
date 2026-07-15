@@ -149,7 +149,7 @@ def test_scan_export_html_includes_relevance_results(tmp_path):
     out = tmp_path / "review.html"
     code, _ = _run([
         "scan", FIXTURE, "--yes",
-        "--relevance", str(rq_path), "--relevance-threshold", "0.15",
+        "--relevance", str(rq_path), "--relevance-percentile", "20",
         "--export", "html", "--export-path", str(out),
     ])
     assert code == 0

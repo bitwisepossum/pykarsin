@@ -103,14 +103,22 @@ together; this is a label, not an automatic classification, since telling
 real duplication apart from stem-chaining needs a human reading the text.
 
 The optional `--relevance` pass compares codes against user-supplied
-research questions and flags low-similarity or very short codes as
-"needs human read" — not as a keyword-absence filter, which was tried and
-produced too many false positives on real codebooks.
+research questions and flags the bottom `--relevance-percentile`% of codes
+by similarity (default 10%), plus any code too short for a reliable
+n-gram signal, as "needs human read" — not as a keyword-absence filter,
+which was tried and produced too many false positives on real codebooks.
+It's a relative ranking within your own codebook, not an absolute
+cutoff — see Limitations below for why.
 
 ## Limitations
 
 - Purely lexical: no semantic disambiguation, no Finnish-specific NLP or
-  lemmatization pipeline.
+  lemmatization pipeline. This is why the relevance pass ranks codes
+  relative to each other instead of against a fixed similarity cutoff —
+  deductive/theory-driven codebooks often have almost no literal wording
+  overlap with the research questions even when a code is clearly
+  on-topic, so an absolute threshold ends up flagging nearly the whole
+  codebook.
 - Cluster chaining artifacts (a shared compound stem pulling unrelated
   codes together) are flagged, not resolved — needs manual read.
 - Only reads and reports; it never modifies the source CSV or writes back

@@ -48,7 +48,7 @@ CLUSTER_ALGOS = [*CLUSTER_ALGORITHMS, "all"]
 # sentinel-default argparse args below
 DEFAULT_PAIR_THRESHOLD = 0.6
 DEFAULT_CLUSTER_THRESHOLD = 0.5
-DEFAULT_RELEVANCE_THRESHOLD = 0.1
+DEFAULT_RELEVANCE_PERCENTILE = 10.0
 DEFAULT_GROUP_COL_PREFIX = "code group"
 DEFAULT_CLUSTER_ALGO = "unionfind"
 
@@ -71,7 +71,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="include rows marked 'merged with ...' in the scan",
     )
     scan.add_argument("--relevance", metavar="PATH", help="text file with 1-3 research questions, one per line")
-    scan.add_argument("--relevance-threshold", type=float, default=None)
+    scan.add_argument("--relevance-percentile", type=float, default=None, help="flag the bottom N%% of codes by similarity to the research questions")
     scan.add_argument("--export", choices=["csv", "markdown", "html", "all"])
     scan.add_argument("--export-path", metavar="PATH", help="explicit output file (single export format only)")
     scan.add_argument("--export-dir", metavar="PATH", help="output directory (default: same folder as csv_path)")
@@ -183,15 +183,15 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
         ) or None
 
     relevance_flags = None
-    relevance_threshold = None
+    relevance_percentile = None
     if relevance_path:
-        relevance_threshold = _resolve_float(
-            console, "Relevance similarity threshold", args.relevance_threshold,
-            DEFAULT_RELEVANCE_THRESHOLD, interactive=interactive,
+        relevance_percentile = _resolve_float(
+            console, "Relevance percentile (bottom N% of codes flagged)", args.relevance_percentile,
+            DEFAULT_RELEVANCE_PERCENTILE, interactive=interactive,
         )
         with open(relevance_path, encoding="utf-8") as f:
             rq_texts = [line.strip() for line in f if line.strip()]
-        relevance_flags = scan_relevance(codes, rq_texts, relevance_threshold)
+        relevance_flags = scan_relevance(codes, rq_texts, relevance_percentile)
 
     params = build_run_parameters(
         pykarsin_version=__version__,
@@ -215,8 +215,8 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
         cluster_algo=cluster_algo,
         dbscan_min_samples=DBSCAN_MIN_SAMPLES,
         kmeans_info=kmeans_info,
-        relevance_threshold=relevance_threshold,
-        relevance_min_length=RELEVANCE_MIN_LENGTH if relevance_threshold is not None else None,
+        relevance_percentile=relevance_percentile,
+        relevance_min_length=RELEVANCE_MIN_LENGTH if relevance_percentile is not None else None,
         relevance_path=relevance_path,
     )
 

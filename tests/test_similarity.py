@@ -202,7 +202,7 @@ def test_scan_relevance_flags_short_and_off_topic_codes():
         "Täysin erillinen ja epäolennainen huomio säästä",
     ]
     rqs = ["Miten asiakaspalvelun jonotusaika koetaan?"]
-    flags = {f.index: f.reason for f in scan_relevance(codes, rqs, threshold=0.2, min_length=5)}
+    flags = {f.index: f.reason for f in scan_relevance(codes, rqs, percentile=50, min_length=5)}
     assert 1 in flags  # too short
     assert 2 in flags  # low similarity to the RQ
     assert 0 not in flags
