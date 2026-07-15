@@ -163,8 +163,10 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
     sim = cosine_sim_matrix(X)
     pairs = find_pairs(codes, sim, pair_threshold)
     kmeans_info: dict | None = {} if cluster_algo in ("kmeans", "all") else None
+    by_algo = None
     if cluster_algo == "all":
         clusters = find_clusters_all(codes, sim, X, cluster_threshold, info=kmeans_info)
+        by_algo = kmeans_info.get("by_algo")
         kmeans_info = kmeans_info.get("kmeans")
     elif cluster_algo == "dbscan":
         clusters = find_clusters_dbscan(codes, sim, cluster_threshold)
@@ -218,7 +220,7 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
         relevance_path=relevance_path,
     )
 
-    render_report(console, records, report, relevance_flags, params)
+    render_report(console, records, report, relevance_flags, params, by_algo)
 
     export_format = args.export
     if interactive and export_format is None:
@@ -240,11 +242,11 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
         if export_format == "all":
             for fmt in ("csv", "markdown", "html"):
                 path = _export_target(args.csv_path, export_dir, fmt)
-                EXPORTERS[fmt](path, records, report, relevance_flags, params)
+                EXPORTERS[fmt](path, records, report, relevance_flags, params, by_algo)
                 console.print(f"Exported to {path}")
         else:
             path = args.export_path or _export_target(args.csv_path, export_dir, export_format)
-            EXPORTERS[export_format](path, records, report, relevance_flags, params)
+            EXPORTERS[export_format](path, records, report, relevance_flags, params, by_algo)
             console.print(f"Exported to {path}")
 
     return 0

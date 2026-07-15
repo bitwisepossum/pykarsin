@@ -11,7 +11,14 @@ from dataclasses import dataclass
 
 from rich.table import Table
 
-from pykarsin.similarity import KMEANS_N_INIT, KMEANS_RANDOM_STATE, ClusterCandidate, PairCandidate, RelevanceFlag
+from pykarsin.similarity import (
+    CLUSTER_ALGORITHMS,
+    KMEANS_N_INIT,
+    KMEANS_RANDOM_STATE,
+    ClusterCandidate,
+    PairCandidate,
+    RelevanceFlag,
+)
 
 
 @dataclass
@@ -161,6 +168,24 @@ def _render_clusters(console, records, clusters) -> None:
         console.print(table)
 
 
+def render_algo_comparison(console, records, by_algo: dict[str, list[ClusterCandidate]]) -> None:
+    """Raw, unmerged output from each clustering algorithm - lets a reader
+    verify the "found by" tags on the merged related groups above instead
+    of taking them on faith."""
+    for algo in CLUSTER_ALGORITHMS:
+        clusters = by_algo.get(algo, [])
+        if not clusters:
+            continue
+        for idx, c in enumerate(clusters, start=1):
+            title = f"Algorithm comparison - {algo}, group {idx} ({len(c.members)} codes, min pairwise similarity {c.min_similarity:.3f})"
+            table = Table(title=title)
+            table.add_column("Row")
+            table.add_column("Code")
+            for m in c.members:
+                table.add_row(str(records[m].row), records[m].code)
+            console.print(table)
+
+
 def render_relevance_flags(console, records, flags: list[RelevanceFlag]) -> None:
     if not flags:
         return
@@ -178,12 +203,15 @@ def render_report(
     console, records, report: Report,
     relevance_flags: list[RelevanceFlag] | None = None,
     params: list[tuple[str, str]] | None = None,
+    by_algo: dict[str, list[ClusterCandidate]] | None = None,
 ) -> None:
     if params:
         render_run_parameters(console, params)
     _render_pair_table(console, "High confidence duplicates", records, report.high)
     _render_pair_table(console, "Check polarity", records, report.check_polarity)
     _render_clusters(console, records, report.clusters)
+    if by_algo:
+        render_algo_comparison(console, records, by_algo)
     if relevance_flags:
         render_relevance_flags(console, records, relevance_flags)
 
@@ -199,6 +227,7 @@ def export_csv(
     path: str, records, report: Report,
     relevance_flags: list[RelevanceFlag] | None = None,
     params: list[tuple[str, str]] | None = None,
+    by_algo: dict[str, list[ClusterCandidate]] | None = None,
 ) -> None:
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv_mod.writer(f)
@@ -217,6 +246,13 @@ def export_csv(
             note += f" (min pairwise similarity: {c.min_similarity:.3f})"
             for m in c.members:
                 writer.writerow(["medium", records[m].row, records[m].code, "", "", "", note])
+        if by_algo:
+            for algo in CLUSTER_ALGORITHMS:
+                for idx, c in enumerate(by_algo.get(algo, []), start=1):
+                    note = f"{algo} raw group {idx}" + (" - verify chaining" if c.chaining_warning else "")
+                    note += f" (min pairwise similarity: {c.min_similarity:.3f})"
+                    for m in c.members:
+                        writer.writerow(["algo_comparison", records[m].row, records[m].code, "", "", "", note])
         if relevance_flags:
             for fl in relevance_flags:
                 r = records[fl.index]
@@ -259,10 +295,32 @@ def _markdown_parameters_section(params: list[tuple[str, str]]) -> list[str]:
     return lines
 
 
+def _markdown_algo_comparison_section(records, by_algo: dict[str, list[ClusterCandidate]]) -> list[str]:
+    lines = ["## Algorithm comparison", "",
+             "Raw, unmerged output from each clustering algorithm - use this to verify the "
+             "\"found by\" labels above yourself.", ""]
+    for algo in CLUSTER_ALGORITHMS:
+        clusters = by_algo.get(algo, [])
+        if not clusters:
+            continue
+        lines.append(f"### {algo}")
+        lines.append("")
+        for idx, c in enumerate(clusters, start=1):
+            warn = " (verify this isn't a chaining artifact)" if c.chaining_warning else ""
+            lines.append(f"#### Group {idx}{warn}")
+            lines.append(f"min pairwise similarity: {c.min_similarity:.3f}")
+            lines.append("")
+            for m in c.members:
+                lines.append(f"- row {records[m].row}: {records[m].code}")
+            lines.append("")
+    return lines
+
+
 def export_markdown(
     path: str, records, report: Report,
     relevance_flags: list[RelevanceFlag] | None = None,
     params: list[tuple[str, str]] | None = None,
+    by_algo: dict[str, list[ClusterCandidate]] | None = None,
 ) -> None:
     lines = ["# Duplicate review", ""]
     if params:
@@ -280,6 +338,8 @@ def export_markdown(
         for m in c.members:
             lines.append(f"- row {records[m].row}: {records[m].code}")
         lines.append("")
+    if by_algo:
+        lines += _markdown_algo_comparison_section(records, by_algo)
     if relevance_flags is not None:
         lines += _markdown_relevance_section(records, relevance_flags)
     with open(path, "w", encoding="utf-8") as f:
@@ -305,6 +365,7 @@ section { margin: 2rem 0; padding: 1rem 1.25rem; border-radius: 6px; border-left
 section.high { background: #fdecea; border-left-color: #c0392b; }
 section.polarity { background: #fff8e6; border-left-color: #b7950b; }
 section.groups { background: #eaf2fb; border-left-color: #2471a3; }
+section.comparison { background: #f4eefb; border-left-color: #7d3c98; }
 section.relevance { background: #f0f0f0; border-left-color: #666; }
 section.meta { background: #f5f5f5; border-left-color: #888; }
 section h2 { margin-top: 0; }
@@ -363,6 +424,31 @@ def _html_clusters_section(records, clusters) -> str:
     return "\n".join(lines)
 
 
+def _html_algo_comparison_section(records, by_algo: dict[str, list[ClusterCandidate]]) -> str:
+    lines = [
+        '<section class="comparison">',
+        "<h2>Algorithm comparison</h2>",
+        "<p>Each algorithm's raw, unmerged output - use this to verify the &#8220;Found by&#8221; "
+        "labels above yourself.</p>",
+    ]
+    for algo in CLUSTER_ALGORITHMS:
+        clusters = by_algo.get(algo, [])
+        if not clusters:
+            continue
+        lines.append(f"<h3>{_esc(algo)}</h3>")
+        for idx, c in enumerate(clusters, start=1):
+            lines.append(f"<h4>Group {idx} ({len(c.members)} codes)</h4>")
+            lines.append(f'<p class="meta">Min pairwise similarity: {c.min_similarity:.3f}</p>')
+            if c.chaining_warning:
+                lines.append('<p class="warning">Verify this isn&#8217;t a chaining artifact from a shared word stem.</p>')
+            lines.append("<ul>")
+            for m in c.members:
+                lines.append(f"<li>row {records[m].row}: {_esc(records[m].code)}</li>")
+            lines.append("</ul>")
+    lines.append("</section>")
+    return "\n".join(lines)
+
+
 def _html_relevance_section(records, flags: list[RelevanceFlag]) -> str:
     lines = ['<section class="relevance">', "<h2>Needs human read (relevance)</h2>"]
     if not flags:
@@ -381,6 +467,7 @@ def export_html(
     path: str, records, report: Report,
     relevance_flags: list[RelevanceFlag] | None = None,
     params: list[tuple[str, str]] | None = None,
+    by_algo: dict[str, list[ClusterCandidate]] | None = None,
 ) -> None:
     parts = [
         "<!doctype html>",
@@ -412,6 +499,8 @@ def export_html(
         _html_pair_section("Check polarity", "polarity", records, report.check_polarity, "No polarity-conflict pairs found."),
         _html_clusters_section(records, report.clusters),
     ]
+    if by_algo:
+        parts.append(_html_algo_comparison_section(records, by_algo))
     if relevance_flags is not None:
         parts.append(_html_relevance_section(records, relevance_flags))
     parts += [

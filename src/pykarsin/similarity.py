@@ -237,6 +237,10 @@ def find_clusters_all(
     }
     if info is not None:
         info["kmeans"] = kmeans_info
+        # raw, unmerged per-algorithm output - lets a caller show a reader
+        # exactly what each algorithm found, so the "found by" tags below
+        # aren't just a black-box claim
+        info["by_algo"] = by_algo
 
     merged: dict[frozenset[int], ClusterCandidate] = {}
     for algo, clusters in by_algo.items():

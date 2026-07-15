@@ -139,6 +139,21 @@ def test_find_clusters_all_forwards_kmeans_info():
     assert info["kmeans"]["k"] is not None
 
 
+def test_find_clusters_all_forwards_raw_per_algorithm_results():
+    sim = cosine_sim_matrix(build_tfidf_matrix(CODES))
+    X = build_tfidf_matrix(CODES)
+
+    info = {}
+    find_clusters_all(CODES, sim, X, 0.5, info=info)
+    by_algo = info["by_algo"]
+    assert set(by_algo) == {"unionfind", "dbscan", "kmeans"}
+
+    # the raw unionfind entries should match calling find_clusters directly
+    direct = {frozenset(c.members) for c in find_clusters(CODES, sim, 0.5)}
+    raw = {frozenset(c.members) for c in by_algo["unionfind"]}
+    assert direct == raw
+
+
 def test_feared_vs_experienced_harm_not_flagged_at_production_thresholds():
     # 6 and 7 share surface wording but differ in tense/aspect (anticipated vs
     # experienced); at production thresholds they just miss the similarity

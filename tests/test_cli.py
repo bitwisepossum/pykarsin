@@ -88,6 +88,28 @@ def test_scan_unionfind_run_parameters_omit_dbscan_and_kmeans_rows(tmp_path):
     assert "kmeans chosen k" not in text
 
 
+def test_scan_all_cluster_algos_exports_raw_algorithm_comparison(tmp_path):
+    md_path = tmp_path / "review.md"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all", "--export", "markdown", "--export-path", str(md_path)])
+    assert code == 0
+    md_text = md_path.read_text(encoding="utf-8").lower()
+    assert "## algorithm comparison" in md_text
+    assert "### unionfind" in md_text
+    assert "### dbscan" in md_text
+
+    csv_path = tmp_path / "review.csv"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "all", "--export", "csv", "--export-path", str(csv_path)])
+    assert code == 0
+    assert "algo_comparison" in csv_path.read_text(encoding="utf-8").lower()
+
+
+def test_scan_single_algo_export_omits_algorithm_comparison(tmp_path):
+    out = tmp_path / "review.md"
+    code, _ = _run(["scan", FIXTURE, "--yes", "--cluster-algo", "unionfind", "--export", "markdown", "--export-path", str(out)])
+    assert code == 0
+    assert "algorithm comparison" not in out.read_text(encoding="utf-8").lower()
+
+
 def test_scan_dry_run_excludes_merged_rows_by_default():
     total, merged_count = _fixture_counts()
     active = total - merged_count

@@ -256,3 +256,77 @@ def test_render_and_export_include_run_parameters_section(tmp_path):
     html_path = tmp_path / "out.html"
     export_html(str(html_path), RECORDS, report, params=params)
     assert "Run parameters" in html_path.read_text(encoding="utf-8")
+
+
+def _sample_by_algo():
+    return {
+        "unionfind": [ClusterCandidate(members=[2, 3], chaining_warning=False, min_similarity=0.7)],
+        "dbscan": [ClusterCandidate(members=[2, 3], chaining_warning=False, min_similarity=0.7)],
+        "kmeans": [],
+    }
+
+
+def test_render_report_includes_algo_comparison_when_by_algo_given():
+    report = build_report([], [])
+    console = Console(file=io.StringIO(), width=200)
+    render_report(console, RECORDS, report, by_algo=_sample_by_algo())
+    out = console.file.getvalue()
+    # rich wraps long table titles across lines at this width, so check for
+    # the words rather than the exact phrase (see test_scan_all_cluster_algos_reports_known_near_duplicates)
+    assert "Algorithm" in out and "comparison" in out
+    assert "unionfind" in out and "dbscan" in out
+
+
+def test_render_report_omits_algo_comparison_when_by_algo_not_given():
+    report = build_report([], [])
+    console = Console(file=io.StringIO(), width=200)
+    render_report(console, RECORDS, report)
+    assert "Algorithm comparison" not in console.file.getvalue()
+
+
+def test_export_csv_includes_algo_comparison_rows(tmp_path):
+    report = build_report([], [])
+    path = tmp_path / "out.csv"
+    export_csv(str(path), RECORDS, report, by_algo=_sample_by_algo())
+    text = path.read_text(encoding="utf-8")
+    assert "algo_comparison" in text
+    assert "Bar A" in text and "Bar B" in text
+
+
+def test_export_csv_omits_algo_comparison_rows_when_not_given(tmp_path):
+    report = build_report([], [])
+    path = tmp_path / "out.csv"
+    export_csv(str(path), RECORDS, report)
+    assert "algo_comparison" not in path.read_text(encoding="utf-8")
+
+
+def test_export_markdown_includes_algo_comparison_section(tmp_path):
+    report = build_report([], [])
+    path = tmp_path / "out.md"
+    export_markdown(str(path), RECORDS, report, by_algo=_sample_by_algo())
+    text = path.read_text(encoding="utf-8")
+    assert "## Algorithm comparison" in text
+    assert "### unionfind" in text and "### dbscan" in text
+
+
+def test_export_markdown_omits_algo_comparison_section_when_not_given(tmp_path):
+    report = build_report([], [])
+    path = tmp_path / "out.md"
+    export_markdown(str(path), RECORDS, report)
+    assert "Algorithm comparison" not in path.read_text(encoding="utf-8")
+
+
+def test_export_html_includes_algo_comparison_section(tmp_path):
+    report = build_report([], [])
+    path = tmp_path / "out.html"
+    export_html(str(path), RECORDS, report, by_algo=_sample_by_algo())
+    text = path.read_text(encoding="utf-8")
+    assert 'class="comparison"' in text
+    assert "Algorithm comparison" in text
+
+
+def test_export_html_omits_algo_comparison_section_when_not_given(tmp_path):
+    report = build_report([], [])
+    path = tmp_path / "out.html"
+    export_html(str(path), RECORDS, report)
+    assert 'class="comparison"' not in path.read_text(encoding="utf-8")
