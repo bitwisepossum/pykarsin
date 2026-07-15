@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pykarsin"
+version = "0.1.0"
+description = "Find near-duplicate and possibly irrelevant entries in a qualitative-coding codebook CSV"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "EUPL-1.2" }
+dependencies = [
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+pykarsin = "pykarsin.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pykarsin"]

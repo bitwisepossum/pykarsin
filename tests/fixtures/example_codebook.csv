@@ -1,0 +1,549 @@
+Code,Comment,Code Group 1,Code Group 2
+Jonotusaika koettiin liian pitkäksi,,Asiakaspalvelu,Kriittinen
+Jonotusaika koettiin kohtuuttoman pitkäksi,,Asiakaspalvelu,Kriittinen
+Verkkosivun ulkoasu koettiin sekavaksi,,Verkkosivusto,
+Verkkosivuston käyttöliittymä koettiin sekavaksi,,Verkkosivusto,
+Verkkosivuston rakenne koettiin sekavaksi,,Verkkosivusto,
+Työntekijä ei osannut vastata asiakkaan kysymykseen,,Asiakaspalvelu,
+Työntekijä osasi vastata asiakkaan kysymykseen,,Asiakaspalvelu,Positiivinen
+Asiakas ei kokenut tulleensa kuulluksi,,Asiakaspalvelu,Kriittinen
+Asiakas koki tulleensa kuulluksi,,Asiakaspalvelu,Positiivinen
+Tuote ei vastannut asiakkaan odotuksia,,Tuotteen laatu,Kriittinen
+Tuote vastasi asiakkaan odotuksia,,Tuotteen laatu,Positiivinen
+Pelkää että valitus johtaa huonompaan kohteluun,,Valitusprosessi,
+Kokee joutuneensa huonompaan kohteluun valituksen jälkeen,,Valitusprosessi,Kriittinen
+Asiakaspalvelu,,Asiakaspalvelu,
+Asiakaspalvelu: Asiakas koki jonottavansa liian kauan,,Asiakaspalvelu,
+Asiakaspalvelu: Työntekijä oli epäystävällinen,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Työntekijä käyttäytyi epäkohteliaasti,,Asiakaspalvelu,
+Verkkosivusto,,Verkkosivusto,
+Verkkosivusto: Hakutoiminto ei löytänyt oikeita tuloksia,,Verkkosivusto,Kriittinen
+Verkkosivusto: Haku ei tuottanut relevantteja tuloksia,,Verkkosivusto,
+Verkkosivusto: Sivusto latautui hitaasti,,Verkkosivusto,
+Verkkosivusto: Sivuston latausaika koettiin pitkäksi,,Verkkosivusto,
+Tuotteen laatu,,Tuotteen laatu,
+Tuotteen laatu: Tuote saapui viallisena,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Tuote oli rikki saapuessaan,,Tuotteen laatu,
+Tuotteen laatu: Materiaali koettiin heikkolaatuiseksi,,Tuotteen laatu,
+Tuotteen laatu: Tuotteen materiaali tuntui halvalta,,Tuotteen laatu,
+Toimitus ja logistiikka,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Toimitus myöhästyi luvatusta ajasta,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Paketti saapui myöhässä,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Toimitusaika venyi odotettua pidemmäksi,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Pakkaus oli vaurioitunut kuljetuksessa,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Paketti oli vahingoittunut matkalla,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Seurantatiedot eivät päivittyneet,,Toimitus ja logistiikka,
+Hinnoittelu,,Hinnoittelu,
+Hinnoittelu: Hinta koettiin liian korkeaksi,,Hinnoittelu,Kriittinen
+Hinnoittelu: Hintataso koettiin kohtuuttomaksi,,Hinnoittelu,
+Hinnoittelu: Hinta-laatusuhde koettiin hyväksi,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hinta vastasi laatua,,Hinnoittelu,
+Hinnoittelu: Piilokuluja ei kerrottu etukäteen,,Hinnoittelu,Kriittinen
+Viestintä,,Viestintä,
+Viestintä: Tilausvahvistus ei saapunut sähköpostiin,,Viestintä,Kriittinen
+Viestintä: Vahvistusviesti jäi saamatta,,Viestintä,
+Viestintä: Yritys ei vastannut yhteydenottoon,,Viestintä,Kriittinen
+Viestintä: Yritykseltä ei tullut vastausta viestiin,,Viestintä,
+Viestintä: Tiedotus muutoksista koettiin riittäväksi,,Viestintä,Positiivinen
+Valitusprosessi,,Valitusprosessi,
+Valitusprosessi: Valituksen käsittely kesti kauan,,Valitusprosessi,
+Valitusprosessi: Valituksen käsittelyaika venyi pitkäksi,,Valitusprosessi,
+Valitusprosessi: Valitukseen ei reagoitu lainkaan,,Valitusprosessi,Kriittinen
+Henkilökunnan käytös,,Henkilökunnan käytös,
+Henkilökunnan käytös: Henkilökunta vaikutti ammattitaitoiselta,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Henkilökunta vaikutti epäammattimaiselta,,Henkilökunnan käytös,
+Henkilökunnan käytös: Henkilökunta oli ystävällistä,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Henkilökunta ei ollut ystävällistä,,Henkilökunnan käytös,Kriittinen
+Mobiilisovellus,,Mobiilisovellus,
+Mobiilisovellus: Sovellus kaatuili usein,,Mobiilisovellus,Kriittinen
+Mobiilisovellus: Sovellus kaatui toistuvasti käytön aikana,,Mobiilisovellus,
+Mobiilisovellus: Kirjautuminen epäonnistui toistuvasti,,Mobiilisovellus,
+Mobiilisovellus: Sisäänkirjautuminen ei onnistunut,,Mobiilisovellus,
+Mobiilisovellus: Push-ilmoitukset koettiin hyödyllisiksi,,Mobiilisovellus,Positiivinen
+Palautusprosessi,,Palautusprosessi,
+Palautusprosessi: Palautuslomake oli vaikeaselkoinen,,Palautusprosessi,
+Palautusprosessi: Palautusohjeet olivat epäselvät,,Palautusprosessi,
+Palautusprosessi: Hyvitys käsiteltiin nopeasti,,Palautusprosessi,Positiivinen
+Palautusprosessi: Rahat palautettiin nopeasti tilille,,Palautusprosessi,Positiivinen
+Kokonaisasiakaskokemus oli positiivinen,,Asiakaskokemus,
+Asiakaskokemusta heikensi pitkä jonotusaika,,Asiakaskokemus,
+Digitaalinen asiakaskokemus koettiin sujuvaksi,,Asiakaskokemus,
+Asiakaskokemusta mitataan säännöllisesti kyselyillä,,Asiakaskokemus,
+Sääolosuhteet mainittiin ohimennen haastattelussa,,,
+Vastaaja mainitsi lomamatkansa haastattelun aluksi,,,
+Ok,,,
+Hyvä,,,
+Vanha koodi asiakaspalvelun jonotuksesta,merged with Jonotusaika koettiin liian pitkäksi,,
+Vanha koodi verkkosivun ulkoasusta,merged with Verkkosivun ulkoasu koettiin sekavaksi,,
+Vanha koodi toimituksen myöhästymisestä,merged with Toimitus ja logistiikka: Toimitus myöhästyi luvatusta ajasta,,
+Asiakaspalvelu: Puhelimeen vastattiin nopeasti,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Puhelimessa joutui odottamaan pitkään,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Yhteyden saaminen asiakaspalveluun oli helppoa,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Asiakaspalveluun oli vaikea saada yhteyttä,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Palvelutilanne eteni sujuvasti,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Palvelutilanne tuntui kiirehdityltä,,Asiakaspalvelu,
+Asiakaspalvelu: Asiakasta kohdeltiin kunnioittavasti,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Kohtelu tuntui vähättelevältä,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Vastaukset olivat ympäripyöreitä,,Asiakaspalvelu,
+Asiakaspalvelu: Neuvonta oli selkeää ja ymmärrettävää,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Ohjeet jäivät epäselviksi,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Asia ratkaistiin ensimmäisen yhteydenoton aikana,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Asiaa jouduttiin selvittämään useaan kertaan,,Asiakaspalvelu,
+Asiakaspalvelu: Vastuun siirtely turhautti asiakasta,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Palvelu koettiin asiantuntevaksi,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Palvelu vaikutti osaamattomalta,,Asiakaspalvelu,
+Asiakaspalvelu: Henkilö puhui ystävälliseen sävyyn,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Äänensävy koettiin tylyksi,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Asiakas sai tilanteeseen pahoittelun,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Virheestä ei pyydetty anteeksi,,Asiakaspalvelu,
+Asiakaspalvelu: Ratkaisua ehdotettiin aktiivisesti,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Asiakas joutui itse ehdottamaan ratkaisua,,Asiakaspalvelu,
+Asiakaspalvelu: Keskustelu palvelijan kanssa oli miellyttävä,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Keskustelu jätti huonon vaikutelman,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Yhteydenottoon vastattiin saman päivän aikana,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Vastauksen saaminen kesti useita päiviä,,Asiakaspalvelu,
+Asiakaspalvelu: Asiakas joutui toistamaan asiansa usealle henkilölle,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Palvelu oli henkilökohtaista,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Palvelu tuntui mekaaniselta,,Asiakaspalvelu,
+Asiakaspalvelu: Tapahtunutta kuunneltiin rauhassa,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Asiakkaan puhe keskeytettiin toistuvasti,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Yhteydenotto puhelimitse oli tehokas,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Chat-palvelu ei ratkaissut ongelmaa,,Asiakaspalvelu,
+Asiakaspalvelu: Sähköpostiasiointi toimi hyvin,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Botin vastaukset eivät auttaneet,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Palvelua sai myös ilta-aikaan,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Palveluajat koettiin liian suppeiksi,,Asiakaspalvelu,
+Asiakaspalvelu: Jonotusmusiikki ärsytti vastaajaa,,Asiakaspalvelu,
+Asiakaspalvelu: Takaisinsoitto toimi sovitusti,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Takaisinsoitto jäi tulematta,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Asiakaspalvelija vaikutti motivoituneelta,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Asiakaspalvelija vaikutti välinpitämättömältä,,Asiakaspalvelu,Kriittinen
+Verkkosivusto: Navigointi oli loogista,,Verkkosivusto,Positiivinen
+Verkkosivusto: Valikot olivat epäselviä,,Verkkosivusto,Kriittinen
+Verkkosivusto: Tarvittu tieto löytyi nopeasti,,Verkkosivusto,Positiivinen
+Verkkosivusto: Oleellisen tiedon löytäminen oli hankalaa,,Verkkosivusto,
+Verkkosivusto: Etusivu antoi hyvän ensivaikutelman,,Verkkosivusto,Positiivinen
+Verkkosivusto: Etusivu vaikutti sekavalta,,Verkkosivusto,
+Verkkosivusto: Sivusto toimi hyvin mobiilissa,,Verkkosivusto,Positiivinen
+Verkkosivusto: Mobiilikäyttö oli kömpelöä,,Verkkosivusto,Kriittinen
+Verkkosivusto: Sivuston fonttikoko oli sopiva,,Verkkosivusto,Positiivinen
+Verkkosivusto: Teksti oli liian pientä luettavaksi,,Verkkosivusto,
+Verkkosivusto: Kontrasti helpotti lukemista,,Verkkosivusto,Positiivinen
+Verkkosivusto: Värit vaikeuttivat sisällön hahmottamista,,Verkkosivusto,
+Verkkosivusto: Lomakkeet toimivat odotetusti,,Verkkosivusto,Positiivinen
+Verkkosivusto: Lomake ei lähettänyt tietoja,,Verkkosivusto,Kriittinen
+Verkkosivusto: Virheilmoitukset olivat hyödyllisiä,,Verkkosivusto,Positiivinen
+Verkkosivusto: Virheilmoitukset jäivät epäselviksi,,Verkkosivusto,
+Verkkosivusto: Sivuston kieliversiot olivat kattavat,,Verkkosivusto,Positiivinen
+Verkkosivusto: Kieliversiossa oli puutteita,,Verkkosivusto,
+Verkkosivusto: Haku ehdotti osuvia tuloksia,,Verkkosivusto,Positiivinen
+Verkkosivusto: Hakutulokset olivat vanhentuneita,,Verkkosivusto,Kriittinen
+Verkkosivusto: Sivuilta löytyi usein rikkinäisiä linkkejä,,Verkkosivusto,
+Verkkosivusto: Sisältö oli ajantasaista,,Verkkosivusto,Positiivinen
+Verkkosivusto: Sisältö vaikutti vanhentuneelta,,Verkkosivusto,
+Verkkosivusto: Ostopolku oli selkeä,,Verkkosivusto,Positiivinen
+Verkkosivusto: Kassalle siirtyminen oli hankalaa,,Verkkosivusto,
+Verkkosivusto: Sivustolla oli liikaa häiriötekijöitä,,Verkkosivusto,
+Verkkosivusto: Sivusto tuntui rauhalliselta käyttää,,Verkkosivusto,Positiivinen
+Verkkosivusto: Evästeilmoitus peitti sisältöä,,Verkkosivusto,
+Verkkosivusto: Sivun rakenne tuki tiedon löytämistä,,Verkkosivusto,Positiivinen
+Verkkosivusto: Osiot oli nimetty epäjohdonmukaisesti,,Verkkosivusto,
+Verkkosivusto: Käyttö tuntui intuitiiviselta,,Verkkosivusto,Positiivinen
+Verkkosivusto: Käyttö vaati liikaa arvailua,,Verkkosivusto,Kriittinen
+Verkkosivusto: Sivusto muistutti aiemmat valinnat,,Verkkosivusto,Positiivinen
+Verkkosivusto: Istunto katkesi kesken asioinnin,,Verkkosivusto,Kriittinen
+Verkkosivusto: Sivulla oli liikaa ponnahdusikkunoita,,Verkkosivusto,
+Verkkosivusto: Tietosuojaseloste löytyi helposti,,Verkkosivusto,Positiivinen
+Verkkosivusto: Tärkeät ehdot oli piilotettu syvälle sivustolle,,Verkkosivusto,Kriittinen
+Verkkosivusto: Saavutettavuus vaikutti hyvältä,,Verkkosivusto,Positiivinen
+Verkkosivusto: Sivustoa oli vaikea käyttää ruudunlukijalla,,Verkkosivusto,
+Tuotteen laatu: Tuote vaikutti kestävältä,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote rikkoutui pian käytön aloittamisen jälkeen,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Viimeistely oli huolellista,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Viimeistelyssä näkyi virheitä,,Tuotteen laatu,
+Tuotteen laatu: Tuote vastasi kuvausta hyvin,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuotteen ominaisuudet eivät vastanneet kuvausta,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Koko piti paikkansa,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Mitoitus poikkesi ilmoitetusta,,Tuotteen laatu,
+Tuotteen laatu: Väri vastasi odotuksia,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Väri poikkesi tuotekuvista,,Tuotteen laatu,
+Tuotteen laatu: Tuote tuntui laadukkaalta kädessä,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote vaikutti huteralta,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Käyttöönotto oli helppoa,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuotteen käyttöönotto oli hankalaa,,Tuotteen laatu,
+Tuotteen laatu: Mukana tuli kaikki tarvittavat osat,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Pakkauksesta puuttui osia,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Ohjeet olivat selkeät,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Käyttöohje oli puutteellinen,,Tuotteen laatu,
+Tuotteen laatu: Tuote toimi luotettavasti,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote toimi vain satunnaisesti,,Tuotteen laatu,
+Tuotteen laatu: Tuotteessa ei ollut havaittavia virheitä,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuotteessa oli valmistusvirhe,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Pakkaus suojasi tuotetta hyvin,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Suojaus oli riittämätön,,Tuotteen laatu,
+Tuotteen laatu: Tuote ylitti odotukset,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote oli pettymys,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Tuotteen käyttöikä vaikutti pitkältä,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote kului nopeasti,,Tuotteen laatu,
+Tuotteen laatu: Materiaali oli miellyttävä,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Materiaali ärsytti ihoa,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Tuote oli helppo puhdistaa,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuotetta oli vaikea huoltaa,,Tuotteen laatu,
+Tuotteen laatu: Tuote vaikutti turvalliselta käyttää,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Käyttöön liittyi turvallisuushuolia,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Tuote oli hyvin pakattu,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote oli naarmuuntunut jo avatessa,,Tuotteen laatu,
+Toimitus ja logistiikka: Toimitus saapui arvioitua aiemmin,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Toimitus saapui täsmälleen luvattuna päivänä,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Kuljetus viivästyi useita päiviä,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Viivästymisestä ei tiedotettu,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Paketin nouto oli vaivatonta,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Noutopiste oli hankalassa paikassa,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Paketti toimitettiin väärään osoitteeseen,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Lähetys löytyi lopulta toisesta noutopisteestä,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Seurantalinkki toimi moitteettomasti,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Seuranta näytti ristiriitaisia tietoja,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Kuljetusyritys piti aikataulun,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Kuljetusikkuna oli liian epätarkka,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Pakkaus oli siisti ja huolellinen,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Pakkaus oli ylimitoitettu tuotteeseen nähden,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Tuote oli suojattu hyvin kuljetuksen ajaksi,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Paketti jätettiin sateeseen oven taakse,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Toimitusohjeita noudatettiin,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Erityistoiveita ei huomioitu toimituksessa,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Kotiinkuljetus oli helppo sopia,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Kotiinkuljetuksen ajankohdan muuttaminen oli vaikeaa,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Toimituskulut koettiin kohtuullisiksi,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Toimituskulut koettiin korkeiksi,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Paketti katosi kuljetuksen aikana,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Lähetyksen tila jäi epäselväksi,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Toimituksen etenemisestä viestittiin aktiivisesti,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Toimitusilmoitukset tulivat liian myöhään,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Noutokoodi saapui ajallaan,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Noutoilmoitus jäi tulematta,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Asennuspalvelu sujui suunnitellusti,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Asennuskäynnin aikataulu petti,,Toimitus ja logistiikka,
+Hinnoittelu: Alennus koettiin aidosti hyödylliseksi,,Hinnoittelu,Positiivinen
+Hinnoittelu: Alennuksen ehdot olivat epäselvät,,Hinnoittelu,
+Hinnoittelu: Lopullinen hinta yllätti kassalla,,Hinnoittelu,Kriittinen
+Hinnoittelu: Hinnasto oli helppo ymmärtää,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hinnoittelu oli sekavaa,,Hinnoittelu,
+Hinnoittelu: Kustannukset olivat läpinäkyviä,,Hinnoittelu,Positiivinen
+Hinnoittelu: Lisämaksut tulivat yllätyksenä,,Hinnoittelu,Kriittinen
+Hinnoittelu: Palvelu oli hintansa arvoinen,,Hinnoittelu,Positiivinen
+Hinnoittelu: Palvelu ei ollut hintansa arvoinen,,Hinnoittelu,
+Hinnoittelu: Edullinen hinta vaikutti ostopäätökseen,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hinnan vaihtelu herätti epäluottamusta,,Hinnoittelu,
+Hinnoittelu: Opiskelija-alennus koettiin tärkeäksi,,Hinnoittelu,Positiivinen
+Hinnoittelu: Alennuskoodi ei toiminut,,Hinnoittelu,Kriittinen
+Hinnoittelu: Vertailu kilpailijoihin teki hinnasta hyväksyttävän,,Hinnoittelu,Positiivinen
+Hinnoittelu: Kilpailijoihin nähden hinta oli liian korkea,,Hinnoittelu,
+Hinnoittelu: Maksuerät helpottivat ostamista,,Hinnoittelu,Positiivinen
+Hinnoittelu: Osamaksun ehdot olivat epäselvät,,Hinnoittelu,
+Hinnoittelu: Ilmainen toimitus lisäsi tyytyväisyyttä,,Hinnoittelu,Positiivinen
+Hinnoittelu: Toimituskulut nostivat kokonaiskustannusta liikaa,,Hinnoittelu,Kriittinen
+Hinnoittelu: Hintatieto löytyi helposti,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hintaa joutui etsimään pitkään,,Hinnoittelu,
+Hinnoittelu: Hinta tuntui reilulta,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hinta tuntui epäoikeudenmukaiselta,,Hinnoittelu,Kriittinen
+Viestintä: Viestien sävy oli asiallinen,,Viestintä,Positiivinen
+Viestintä: Viestintä oli töksähtelevää,,Viestintä,
+Viestintä: Ohjeistus ennen toimitusta oli selkeä,,Viestintä,Positiivinen
+Viestintä: Ennakkoviestintä jäi puutteelliseksi,,Viestintä,
+Viestintä: Muutoksista ilmoitettiin ajoissa,,Viestintä,Positiivinen
+Viestintä: Muutoksista kerrottiin liian myöhään,,Viestintä,Kriittinen
+Viestintä: Viestit olivat helposti ymmärrettäviä,,Viestintä,Positiivinen
+Viestintä: Käytetty kieli oli liian teknistä,,Viestintä,
+Viestintä: Yhteydenottopyyntöön vastattiin nopeasti,,Viestintä,Positiivinen
+Viestintä: Vastauksen odottaminen turhautti,,Viestintä,
+Viestintä: Asiakas sai tarpeeksi tietoa päätöksen tueksi,,Viestintä,Positiivinen
+Viestintä: Tietoa annettiin liian vähän,,Viestintä,Kriittinen
+Viestintä: Tiedotteet olivat johdonmukaisia eri kanavissa,,Viestintä,Positiivinen
+Viestintä: Eri kanavissa annettiin ristiriitaista tietoa,,Viestintä,Kriittinen
+Viestintä: Chat-viestintä oli nopeaa,,Viestintä,Positiivinen
+Viestintä: Chatissa vastattiin kaavamaisesti,,Viestintä,
+Viestintä: Puhelimessa saatu tieto vastasi sähköpostia,,Viestintä,Positiivinen
+Viestintä: Puhelimessa ja sähköpostissa annettiin eri vastaukset,,Viestintä,Kriittinen
+Viestintä: Automaattiviestit olivat hyödyllisiä,,Viestintä,Positiivinen
+Viestintä: Automaattiviestejä tuli liikaa,,Viestintä,
+Viestintä: Asiakas koki viestinnän avoimeksi,,Viestintä,Positiivinen
+Viestintä: Viestinnästä jäi välttelevä vaikutelma,,Viestintä,
+Viestintä: Tiedotteissa huomioitiin asiakkaan tilanne hyvin,,Viestintä,Positiivinen
+Viestintä: Viestit tuntuivat geneerisiltä,,Viestintä,
+Viestintä: Yhteydenoton vahvistus tuli heti,,Viestintä,Positiivinen
+Viestintä: Viestin perillemenosta ei tullut varmistusta,,Viestintä,
+Valitusprosessi: Reklamaation tekeminen oli helppoa,,Valitusprosessi,Positiivinen
+Valitusprosessi: Valituksen jättäminen oli monimutkaista,,Valitusprosessi,Kriittinen
+Valitusprosessi: Asiakas sai vahvistuksen reklamaation vastaanotosta,,Valitusprosessi,Positiivinen
+Valitusprosessi: Reklamaatioon ei tullut kuittausta,,Valitusprosessi,
+Valitusprosessi: Päätöksen perustelut olivat selkeitä,,Valitusprosessi,Positiivinen
+Valitusprosessi: Ratkaisun perustelut jäivät epäselviksi,,Valitusprosessi,
+Valitusprosessi: Hyvitys tarjottiin ilman ylimääräistä vaivaa,,Valitusprosessi,Positiivinen
+Valitusprosessi: Asiakas joutui vaatimaan hyvitystä useasti,,Valitusprosessi,Kriittinen
+Valitusprosessi: Reklamaation käsittely oli oikeudenmukaista,,Valitusprosessi,Positiivinen
+Valitusprosessi: Käsittely koettiin epäoikeudenmukaiseksi,,Valitusprosessi,Kriittinen
+Valitusprosessi: Valituskanava oli helppo löytää,,Valitusprosessi,Positiivinen
+Valitusprosessi: Reklamaatio-ohjeet olivat piilossa,,Valitusprosessi,
+Valitusprosessi: Asiakas sai tilanteeseen selkeän aikataulun,,Valitusprosessi,Positiivinen
+Valitusprosessi: Käsittelyn etenemisestä ei kerrottu,,Valitusprosessi,
+Valitusprosessi: Päätös tuli nopeasti,,Valitusprosessi,Positiivinen
+Valitusprosessi: Ratkaisua joutui odottamaan kohtuuttoman kauan,,Valitusprosessi,Kriittinen
+Valitusprosessi: Asiakas koki tulleensa kohdelluksi asiallisesti,,Valitusprosessi,Positiivinen
+Valitusprosessi: Reklamaatioon vastattiin puolustautuvasti,,Valitusprosessi,
+Valitusprosessi: Korvaus vastasi aiheutunutta haittaa,,Valitusprosessi,Positiivinen
+Valitusprosessi: Tarjottu kompensaatio jäi liian pieneksi,,Valitusprosessi,
+Valitusprosessi: Prosessi lisäsi luottamusta yritykseen,,Valitusprosessi,Positiivinen
+Valitusprosessi: Prosessi heikensi luottamusta yritykseen,,Valitusprosessi,Kriittinen
+Henkilökunnan käytös: Henkilökunta oli helposti lähestyttävää,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Henkilökunta vaikutti etäiseltä,,Henkilökunnan käytös,
+Henkilökunnan käytös: Käytös oli rauhallista ja asiallista,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Käytös oli tylyä,,Henkilökunnan käytös,Kriittinen
+Henkilökunnan käytös: Työntekijä osoitti empatiaa,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Asiakkaan tilannetta ei ymmärretty,,Henkilökunnan käytös,
+Henkilökunnan käytös: Henkilökunta kuunteli keskeyttämättä,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Henkilökunta puhui päälle,,Henkilökunnan käytös,Kriittinen
+Henkilökunnan käytös: Työntekijä pysyi kärsivällisenä,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Kärsivällisyys loppui kesken tilanteen,,Henkilökunnan käytös,
+Henkilökunnan käytös: Henkilökunta teki hyvän yhteistyövaikutelman,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Sisäinen koordinaatio vaikutti heikolta,,Henkilökunnan käytös,
+Henkilökunnan käytös: Kohtaaminen oli lämminhenkinen,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Kohtaaminen tuntui kylmältä,,Henkilökunnan käytös,
+Henkilökunnan käytös: Ammattirooli näkyi vakuuttavasti,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Epävarmuus näkyi asiakkaalle asti,,Henkilökunnan käytös,
+Mobiilisovellus: Sovellus käynnistyi nopeasti,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Sovellus avautui hitaasti,,Mobiilisovellus,
+Mobiilisovellus: Navigointi sovelluksessa oli selkeää,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Valikkorakenne oli vaikeaselkoinen,,Mobiilisovellus,
+Mobiilisovellus: Maksaminen sovelluksessa onnistui helposti,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Maksaminen epäonnistui sovelluksessa,,Mobiilisovellus,Kriittinen
+Mobiilisovellus: Sovellus muisti käyttäjän asetukset,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Asetukset palautuivat itsestään,,Mobiilisovellus,
+Mobiilisovellus: Biometrinen tunnistautuminen toimi hyvin,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Kasvo- tai sormenjälkitunnistus ei toiminut luotettavasti,,Mobiilisovellus,
+Mobiilisovellus: Sovellus näytti hyödyllisiä ilmoituksia,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Ilmoituksia tuli liikaa,,Mobiilisovellus,
+Mobiilisovellus: Sovelluksen ulkoasu oli miellyttävä,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Käyttöliittymä vaikutti vanhanaikaiselta,,Mobiilisovellus,
+Mobiilisovellus: Sovellus toimi ilman häiriöitä,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Sovellus jumittui toistuvasti,,Mobiilisovellus,Kriittinen
+Mobiilisovellus: Tiedot synkronoituvat nopeasti,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Synkronointi eri laitteiden välillä ei toiminut,,Mobiilisovellus,
+Mobiilisovellus: Päivitys paransi käyttökokemusta,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Päivityksen jälkeen ilmeni uusia ongelmia,,Mobiilisovellus,Kriittinen
+Mobiilisovellus: Sovelluksen käyttö tuntui turvalliselta,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Sovellus pyysi liikaa käyttöoikeuksia,,Mobiilisovellus,
+Mobiilisovellus: Hakutoiminto sovelluksessa toimi hyvin,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Haku sovelluksessa ei löytänyt oikeaa sisältöä,,Mobiilisovellus,
+Mobiilisovellus: Sovelluksen saavutettavuus vaikutti hyvältä,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Pieni kosketusalue vaikeutti käyttöä,,Mobiilisovellus,
+Palautusprosessi: Palautuksen aloittaminen oli yksinkertaista,,Palautusprosessi,Positiivinen
+Palautusprosessi: Palautuksen tekeminen vaati liikaa vaiheita,,Palautusprosessi,
+Palautusprosessi: Palautustarra oli helppo löytää,,Palautusprosessi,Positiivinen
+Palautusprosessi: Palautustarra puuttui,,Palautusprosessi,Kriittinen
+Palautusprosessi: Ohjeet palautukseen olivat vaihe vaiheelta selkeät,,Palautusprosessi,Positiivinen
+Palautusprosessi: Asiakas ei tiennyt miten palautus tehdään,,Palautusprosessi,
+Palautusprosessi: Rahojen palautus eteni odotetussa ajassa,,Palautusprosessi,Positiivinen
+Palautusprosessi: Hyvityksen saaminen viivästyi,,Palautusprosessi,Kriittinen
+Palautusprosessi: Palautuksesta viestittiin hyvin,,Palautusprosessi,Positiivinen
+Palautusprosessi: Palautuksen tilaa ei voinut seurata,,Palautusprosessi,
+Palautusprosessi: Vaihto uuteen tuotteeseen onnistui helposti,,Palautusprosessi,Positiivinen
+Palautusprosessi: Vaihtoprosessi oli hidas,,Palautusprosessi,
+Palautusprosessi: Palautusehdot olivat kohtuulliset,,Palautusprosessi,Positiivinen
+Palautusprosessi: Palautusehdot koettiin tiukoiksi,,Palautusprosessi,
+Palautusprosessi: Palautus oli asiakkaalle maksuton,,Palautusprosessi,Positiivinen
+Palautusprosessi: Palautuksesta perittiin yllättävä maksu,,Palautusprosessi,Kriittinen
+Asiakaskokemus: Kokemus vastasi odotuksia,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Kokemus jäi odotuksia heikommaksi,,Asiakaskokemus,
+Asiakaskokemus: Asiointi oli vaivatonta alusta loppuun,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Asiointipolussa oli useita kitkakohtia,,Asiakaskokemus,
+Asiakaskokemus: Kokonaisuus herätti luottamusta,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Luottamus palveluun heikkeni kokemuksen myötä,,Asiakaskokemus,Kriittinen
+Asiakaskokemus: Asiakas olisi valmis asioimaan uudelleen,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Asiakas ei halua käyttää palvelua uudestaan,,Asiakaskokemus,Kriittinen
+Asiakaskokemus: Kokemus tuntui johdonmukaiselta eri kanavissa,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Eri kanavien välillä oli katkoksia,,Asiakaskokemus,
+Asiakaskokemus: Palvelu ylitti odotukset pienillä yksityiskohdilla,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Yksittäiset ongelmat varjostivat kokonaisuutta,,Asiakaskokemus,
+Asiakaskokemus: Sujuvuus oli keskeinen tyytyväisyyttä lisäävä tekijä,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Epävarmuus heikensi asiointikokemusta,,Asiakaskokemus,
+Asiakaskokemus: Asiakas suosittelisi palvelua muille,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Asiakas ei suosittelisi palvelua muille,,Asiakaskokemus,Kriittinen
+Asiakaskokemus: Ensivaikutelma oli hyvä,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Ensivaikutelma jäi heikoksi,,Asiakaskokemus,
+Asiakaskokemus: Kokemus oli tasaisen laadukas,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Kokemus vaihteli paljon tilanteesta toiseen,,Asiakaskokemus,
+Saavutettavuus,,Saavutettavuus,
+Saavutettavuus: Palvelu oli helppokäyttöinen myös apuvälineillä,,Saavutettavuus,Positiivinen
+Saavutettavuus: Näppäimistökäyttö ei toiminut kunnolla,,Saavutettavuus,Kriittinen
+Saavutettavuus: Kuville oli tarjolla tekstivastineet,,Saavutettavuus,Positiivinen
+Saavutettavuus: Kuvista puuttui vaihtoehtoinen teksti,,Saavutettavuus,
+Saavutettavuus: Sisältö oli ymmärrettävää,,Saavutettavuus,Positiivinen
+Saavutettavuus: Kieli oli vaikeaselkoista,,Saavutettavuus,
+Saavutettavuus: Lomakkeet tukivat ruudunlukijan käyttöä,,Saavutettavuus,Positiivinen
+Saavutettavuus: Lomakekenttiä ei ollut nimetty selkeästi,,Saavutettavuus,
+Saavutettavuus: Linkkitekstit olivat informatiivisia,,Saavutettavuus,Positiivinen
+Saavutettavuus: Linkkitekstit olivat liian yleisiä,,Saavutettavuus,
+Tietoturva ja luottamus,,Tietoturva ja luottamus,
+Tietoturva ja luottamus: Palvelu vaikutti turvalliselta,,Tietoturva ja luottamus,Positiivinen
+Tietoturva ja luottamus: Tietojen käsittely herätti epäilyksiä,,Tietoturva ja luottamus,Kriittinen
+Tietoturva ja luottamus: Kirjautuminen tuntui suojatulta,,Tietoturva ja luottamus,Positiivinen
+Tietoturva ja luottamus: Kaksivaiheinen tunnistautuminen puuttui,,Tietoturva ja luottamus,
+Tietoturva ja luottamus: Tietosuojakäytännöt oli kuvattu selkeästi,,Tietoturva ja luottamus,Positiivinen
+Tietoturva ja luottamus: Tietosuojakäytännöt jäivät epäselviksi,,Tietoturva ja luottamus,
+Tietoturva ja luottamus: Luottamus yritykseen vahvistui,,Tietoturva ja luottamus,Positiivinen
+Tietoturva ja luottamus: Luottamus yritykseen horjui,,Tietoturva ja luottamus,Kriittinen
+Tietoturva ja luottamus: Maksaminen vaikutti turvalliselta,,Tietoturva ja luottamus,Positiivinen
+Tietoturva ja luottamus: Maksutapahtuma herätti epävarmuutta,,Tietoturva ja luottamus,
+Käytettävyys,,Käytettävyys,
+Käytettävyys: Palvelun käyttö opittiin nopeasti,,Käytettävyys,Positiivinen
+Käytettävyys: Käyttölogiikka jäi epäselväksi,,Käytettävyys,
+Käytettävyys: Toiminnot löytyivät ilman ohjeita,,Käytettävyys,Positiivinen
+Käytettävyys: Käyttäjä joutui kokeilemaan useita reittejä,,Käytettävyys,
+Käytettävyys: Käyttö oli tehokasta,,Käytettävyys,Positiivinen
+Käytettävyys: Tehtävien suorittaminen vei liikaa aikaa,,Käytettävyys,Kriittinen
+Käytettävyys: Kokemus oli johdonmukainen,,Käytettävyys,Positiivinen
+Käytettävyys: Painikkeiden sijainti vaihteli epäjohdonmukaisesti,,Käytettävyys,
+Käytettävyys: Käyttäjä sai riittävästi palautetta toiminnasta,,Käytettävyys,Positiivinen
+Käytettävyys: Järjestelmän tila jäi epäselväksi,,Käytettävyys,
+Maksaminen,,Maksaminen,
+Maksaminen: Maksuprosessi sujui ongelmitta,,Maksaminen,Positiivinen
+Maksaminen: Maksu keskeytyi ilman selitystä,,Maksaminen,Kriittinen
+Maksaminen: Tarjolla oli useita sopivia maksutapoja,,Maksaminen,Positiivinen
+Maksaminen: Maksutapojen määrä oli liian rajallinen,,Maksaminen,
+Maksaminen: Maksuvahvistus tuli heti,,Maksaminen,Positiivinen
+Maksaminen: Maksuvahvistus viipyi,,Maksaminen,
+Maksaminen: Laskutus oli selkeä,,Maksaminen,Positiivinen
+Maksaminen: Laskussa oli virhe,,Maksaminen,Kriittinen
+Maksaminen: Maksaminen mobiililla oli kätevää,,Maksaminen,Positiivinen
+Maksaminen: Maksusivu latautui hitaasti,,Maksaminen,
+En tiedä,,,
+Ei erityistä sanottavaa,,,
+Asiakaspalvelu: Puhelinjonossa joutui odottamaan kohtuuttoman kauan,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Puhelimeen vastaamista sai odottaa liian pitkään,,Asiakaspalvelu,
+Asiakaspalvelu: Yhteydenotto asiakaspalveluun vei paljon aikaa,,Asiakaspalvelu,
+Asiakaspalvelu: Asiakas koki ettei häntä aidosti kuunneltu,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Asiakkaan näkökulmaa ei otettu huomioon,,Asiakaspalvelu,
+Asiakaspalvelu: Asiakas tunsi tulleensa kuunnelluksi,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Palveluhenkilö osasi neuvoa asiassa,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Palvelija ei tiennyt miten asia ratkaistaan,,Asiakaspalvelu,
+Asiakaspalvelu: Työntekijän vastaus ei auttanut eteenpäin,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Asiakasta palloteltiin henkilöltä toiselle,,Asiakaspalvelu,
+Asiakaspalvelu: Asia ratkesi jo ensimmäisellä yhteydenotolla,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Ongelman selvittely vaati useita yhteydenottoja,,Asiakaspalvelu,
+Asiakaspalvelu: Palvelun sävy oli lämmin ja kunnioittava,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Kohtaaminen tuntui tylyltä,,Asiakaspalvelu,Kriittinen
+Asiakaspalvelu: Asiakaspalvelijan käytös oli epäystävällistä,,Asiakaspalvelu,
+Asiakaspalvelu: Keskustelu eteni nopeasti ja sujuvasti,,Asiakaspalvelu,Positiivinen
+Asiakaspalvelu: Asiakaspalvelija vaikutti väsyneeltä ja välinpitämättömältä,,Asiakaspalvelu,
+Verkkosivusto: Sivuston rakenne tuntui vaikeasti hahmotettavalta,,Verkkosivusto,
+Verkkosivusto: Sivujen jäsentely oli sekava,,Verkkosivusto,Kriittinen
+Verkkosivusto: Tarvittavan tiedon löytäminen vei turhan kauan,,Verkkosivusto,
+Verkkosivusto: Oikea tieto löytyi sivustolta vaivattomasti,,Verkkosivusto,Positiivinen
+Verkkosivusto: Hakukone sivustolla tarjosi vääriä osumia,,Verkkosivusto,
+Verkkosivusto: Sivuston sisäinen haku ei löytänyt relevanttia sisältöä,,Verkkosivusto,Kriittinen
+Verkkosivusto: Hakutoiminto antoi hyödyllisiä tuloksia,,Verkkosivusto,Positiivinen
+Verkkosivusto: Sivujen latautuminen kesti pitkään,,Verkkosivusto,
+Verkkosivusto: Verkkopalvelu oli hidas käyttää,,Verkkosivusto,Kriittinen
+Verkkosivusto: Mobiilissa käyttö sujui hyvin,,Verkkosivusto,Positiivinen
+Verkkosivusto: Puhelimella asiointi sivustolla oli hankalaa,,Verkkosivusto,
+Verkkosivusto: Käyttöliittymä vaikutti selkeältä,,Verkkosivusto,Positiivinen
+Verkkosivusto: Valikkorakenne oli epälooginen,,Verkkosivusto,
+Verkkosivusto: Lomakkeen täyttäminen epäonnistui teknisen virheen vuoksi,,Verkkosivusto,Kriittinen
+Verkkosivusto: Sivuston virheilmoitukset eivät kertoneet mitä pitäisi tehdä,,Verkkosivusto,
+Tuotteen laatu: Tuote ei ollut sellainen kuin oli odotettu,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Saatu tuote vastasi hyvin ennakko-odotuksia,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote saapui rikkoutuneena,,Tuotteen laatu,
+Tuotteen laatu: Lähetyksen mukana tullut tuote oli valmiiksi vaurioitunut,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Materiaali vaikutti halvalta,,Tuotteen laatu,
+Tuotteen laatu: Materiaalit tuntuivat laadukkailta,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Toteutus oli viimeistelty huolellisesti,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuotteessa näkyi viimeistelyvirheitä,,Tuotteen laatu,
+Tuotteen laatu: Ominaisuudet eivät vastanneet tuotekuvausta,,Tuotteen laatu,Kriittinen
+Tuotteen laatu: Tuotteen kuvaus piti hyvin paikkansa,,Tuotteen laatu,Positiivinen
+Tuotteen laatu: Tuote hajosi melko nopeasti käytössä,,Tuotteen laatu,
+Tuotteen laatu: Tuote vaikutti kestävältä pitkäaikaiseen käyttöön,,Tuotteen laatu,Positiivinen
+Toimitus ja logistiikka: Lähetys tuli perille luvatun ajan jälkeen,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Toimitus viivästyi odotetusta,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Paketti oli perillä ajallaan,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Lähetys saapui jopa ennakoitua nopeammin,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Kuljetuksessa pakkaus ehti vahingoittua,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Paketin ulkopakkaus oli rikki toimitettaessa,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Seurantatiedoista ei saanut kunnolla selvää,,Toimitus ja logistiikka,
+Toimitus ja logistiikka: Lähetyksen etenemistä oli helppo seurata,,Toimitus ja logistiikka,Positiivinen
+Toimitus ja logistiikka: Noutoilmoitus ei tullut asiakkaalle asti,,Toimitus ja logistiikka,Kriittinen
+Toimitus ja logistiikka: Paketti päätyi väärään toimituspaikkaan,,Toimitus ja logistiikka,
+Hinnoittelu: Hintaa pidettiin liian korkeana,,Hinnoittelu,Kriittinen
+Hinnoittelu: Kokonaishinta tuntui ylimitoitetulta,,Hinnoittelu,
+Hinnoittelu: Tuote tuntui olevan hintansa arvoinen,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hinnan ja laadun välinen suhde oli kohdallaan,,Hinnoittelu,Positiivinen
+Hinnoittelu: Maksun yhteydessä tuli esiin yllättäviä lisäkuluja,,Hinnoittelu,Kriittinen
+Hinnoittelu: Kaikkia kustannuksia ei ollut avattu etukäteen,,Hinnoittelu,
+Hinnoittelu: Hinnoittelu oli esitetty selkeästi,,Hinnoittelu,Positiivinen
+Hinnoittelu: Hintarakenteesta oli vaikea saada selvää,,Hinnoittelu,
+Hinnoittelu: Alennus vaikutti aidosti hyödylliseltä,,Hinnoittelu,Positiivinen
+Hinnoittelu: Alennuksen ehdot jäivät epäselviksi asiakkaalle,,Hinnoittelu,
+Viestintä: Tilausvahvistus jäi saamatta,,Viestintä,Kriittinen
+Viestintä: Vahvistavaa sähköpostia ei koskaan tullut,,Viestintä,
+Viestintä: Yritys ei reagoinut asiakkaan viestiin,,Viestintä,Kriittinen
+Viestintä: Lähetettyyn kysymykseen ei vastattu,,Viestintä,
+Viestintä: Muutoksista tiedotettiin hyvissä ajoin,,Viestintä,Positiivinen
+Viestintä: Asiakas sai riittävästi tietoa tilanteen muutoksista,,Viestintä,Positiivinen
+Viestintä: Tiedotus jäi niukaksi,,Viestintä,
+Viestintä: Eri kanavissa annettu tieto ei ollut yhtenevää,,Viestintä,Kriittinen
+Viestintä: Viestit olivat helposti ymmärrettäviä,,Viestintä,Positiivinen
+Valitusprosessi: Reklamaation käsittely venyi pitkälle,,Valitusprosessi,
+Valitusprosessi: Valituksen ratkaiseminen kesti liian kauan,,Valitusprosessi,Kriittinen
+Valitusprosessi: Reklamaatioon ei vastattu ollenkaan,,Valitusprosessi,Kriittinen
+Valitusprosessi: Asiakas ei saanut mitään reaktiota tekemäänsä valitukseen,,Valitusprosessi,
+Valitusprosessi: Korvausasia hoidettiin nopeasti,,Valitusprosessi,Positiivinen
+Valitusprosessi: Reklamaation tekeminen onnistui helposti,,Valitusprosessi,Positiivinen
+Valitusprosessi: Valitusohjeet olivat vaikeasti löydettävissä,,Valitusprosessi,
+Valitusprosessi: Käsittely koettiin reiluksi,,Valitusprosessi,Positiivinen
+Henkilökunnan käytös: Työntekijät vaikuttivat osaavilta,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Henkilökunnan toiminta vaikutti epäammattimaiselta,,Henkilökunnan käytös,
+Henkilökunnan käytös: Palvelutilanteessa oltiin ystävällisiä,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Palveluasenne oli huono,,Henkilökunnan käytös,Kriittinen
+Henkilökunnan käytös: Asiakkaan tilanne kohdattiin empaattisesti,,Henkilökunnan käytös,Positiivinen
+Henkilökunnan käytös: Asiakkaan kokemusta vähäteltiin,,Henkilökunnan käytös,
+Mobiilisovellus: Sovellus kaatui vähän väliä,,Mobiilisovellus,Kriittinen
+Mobiilisovellus: Sovelluksen käyttö keskeytyi toistuviin kaatumisiin,,Mobiilisovellus,
+Mobiilisovellus: Kirjautuminen appiin ei onnistunut,,Mobiilisovellus,
+Mobiilisovellus: Sisäänpääsy sovellukseen epäonnistui useasti,,Mobiilisovellus,Kriittinen
+Mobiilisovellus: Ilmoituksista oli oikeasti hyötyä,,Mobiilisovellus,Positiivinen
+Mobiilisovellus: Push-viestit tukivat käyttöä hyvin,,Mobiilisovellus,Positiivinen
+Palautusprosessi: Palautuslomake oli hankala ymmärtää,,Palautusprosessi,
+Palautusprosessi: Palautuksen ohjeistus tuntui epäselvältä,,Palautusprosessi,
+Palautusprosessi: Hyvitys tuli tilille nopeasti,,Palautusprosessi,Positiivinen
+Palautusprosessi: Rahat palautuivat ilman pitkää viivettä,,Palautusprosessi,Positiivinen
+Asiakaskokemus: Kokonaiskokemus jäi myönteiseksi,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Pitkä odottaminen heikensi yleiskuvaa palvelusta,,Asiakaskokemus,
+Asiakaskokemus: Verkkoasiointi tuntui sujuvalta,,Asiakaskokemus,Positiivinen
+Asiakaskokemus: Kokemus palvelusta oli kokonaisuutena pettymys,,Asiakaskokemus,Kriittinen
+Haastateltava nauroi tässä kohdassa,,,
+Tähän ei osannut vastata,,,
+Asia sivusi myös kilpailijoita,,,
+Muisti lapsuuden kokemuksen kesken haastattelun,,,
+"Vanha koodi, epämääräinen palvelupalaute",needs review,,
+Vanha koodi tuotteen rikkoutumisesta,merged with Tuotteen laatu: Tuote rikkoutui pian käytön aloittamisen jälkeen,,
+Vanha koodi sovelluksen kaatumisesta,merged with Mobiilisovellus: Sovellus kaatuili usein,,
+Vanha koodi reklamaation hitaudesta,merged with Valitusprosessi: Valituksen käsittely kesti kauan,,
+Vanha koodi hintojen epäselvyydestä,merged with Hinnoittelu: Hinnoittelu oli sekavaa,,
+Vanha koodi puuttuvasta vahvistusviestistä,merged with Viestintä: Tilausvahvistus ei saapunut sähköpostiin,,
+Vanha koodi epäystävällisestä palvelusta,merged with Asiakaspalvelu: Työntekijä oli epäystävällinen,,
+Vanha koodi toimituksen vaurioista,merged with Toimitus ja logistiikka: Pakkaus oli vaurioitunut kuljetuksessa,,
+Lyhyt kommentti: kallis,,Hinnoittelu,
+Lyhyt kommentti: hidas,,Asiakaspalvelu,
+Lyhyt kommentti: toimii,,Tuotteen laatu,Positiivinen
+Lyhyt kommentti: sekava,,Verkkosivusto,
+Lyhyt kommentti: hyvä kokemus,,Asiakaskokemus,Positiivinen
+Lyhyt kommentti: pettymys,,Asiakaskokemus,Kriittinen
+Palvelu ylitti odotukset useammalla osa-alueella,,Asiakaskokemus,Positiivinen
+Pieni virhe ei lopulta haitannut kokonaisuutta,,Asiakaskokemus,
+Kokemus oli ristiriitainen,,Asiakaskokemus,
+Haastateltava painotti helppoutta useaan kertaan,,Käytettävyys,
+Haastateltava palasi toistuvasti hintaan,,Hinnoittelu,
+Vastaaja korosti luottamuksen merkitystä,,Tietoturva ja luottamus,
+Mainitsi ystävällisen kohtaamisen tärkeäksi,,Henkilökunnan käytös,Positiivinen
+Kuvaus jäi hyvin yleiselle tasolle,,,
+Ei liittynyt tutkimuskysymykseen,,,
+Sivuhuomio säästä toimituspäivänä,,,
