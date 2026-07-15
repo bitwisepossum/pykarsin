@@ -3,19 +3,46 @@ from __future__ import annotations
 
 import argparse
 import os
+import platform
 import sys
+from datetime import datetime, timezone
 
+import numpy
+import sklearn
 from rich.console import Console
 from rich.prompt import Confirm, FloatPrompt, Prompt
 
 from pykarsin import __version__
 from pykarsin.columns import confirm_columns, guess_columns, parse_column_range, resolve_column
 from pykarsin.io_csv import build_records, read_csv_rows, split_merged
-from pykarsin.report import build_report, export_csv, export_html, export_markdown, render_dry_run_stats, render_report
-from pykarsin.similarity import build_tfidf_matrix, cosine_sim_matrix, find_clusters, find_pairs, scan_relevance
+from pykarsin.report import (
+    build_report,
+    build_run_parameters,
+    export_csv,
+    export_html,
+    export_markdown,
+    render_dry_run_stats,
+    render_report,
+)
+from pykarsin.similarity import (
+    CLUSTER_ALGORITHMS,
+    DBSCAN_MIN_SAMPLES,
+    RELEVANCE_MIN_LENGTH,
+    TFIDF_ANALYZER,
+    TFIDF_NGRAM_RANGE,
+    build_tfidf_matrix,
+    cosine_sim_matrix,
+    find_clusters,
+    find_clusters_all,
+    find_clusters_dbscan,
+    find_clusters_kmeans,
+    find_pairs,
+    scan_relevance,
+)
 
 EXPORT_SUFFIX = {"csv": "csv", "markdown": "md", "html": "html"}
 EXPORTERS = {"csv": export_csv, "markdown": export_markdown, "html": export_html}
+CLUSTER_ALGOS = [*CLUSTER_ALGORITHMS, "all"]
 
 # hardcoded fallbacks applied after the interactive-prompt decision - see the
 # sentinel-default argparse args below
@@ -23,6 +50,7 @@ DEFAULT_PAIR_THRESHOLD = 0.6
 DEFAULT_CLUSTER_THRESHOLD = 0.5
 DEFAULT_RELEVANCE_THRESHOLD = 0.1
 DEFAULT_GROUP_COL_PREFIX = "code group"
+DEFAULT_CLUSTER_ALGO = "unionfind"
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -37,6 +65,7 @@ def build_parser() -> argparse.ArgumentParser:
     # only the former gets prompted for interactively
     scan.add_argument("--pair-threshold", type=float, default=None)
     scan.add_argument("--cluster-threshold", type=float, default=None)
+    scan.add_argument("--cluster-algo", choices=CLUSTER_ALGOS, default=None)
     scan.add_argument(
         "--include-merged", action="store_true", default=None,
         help="include rows marked 'merged with ...' in the scan",
@@ -63,6 +92,16 @@ def _resolve_float(console: Console, prompt_text: str, current: float | None, de
         return current
     if interactive:
         return FloatPrompt.ask(prompt_text, default=default, console=console)
+    return default
+
+
+def _resolve_choice(
+    console: Console, prompt_text: str, current: str | None, choices: list[str], default: str, *, interactive: bool
+) -> str:
+    if current is not None:
+        return current
+    if interactive:
+        return Prompt.ask(prompt_text, choices=choices, default=default, console=console)
     return default
 
 
@@ -108,17 +147,31 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
     if args.dry_run:
         return 0
 
+    cluster_algo = _resolve_choice(
+        console, "Clustering algorithm", args.cluster_algo, CLUSTER_ALGOS, DEFAULT_CLUSTER_ALGO, interactive=interactive
+    )
     pair_threshold = _resolve_float(
         console, "Pairwise similarity threshold", args.pair_threshold, DEFAULT_PAIR_THRESHOLD, interactive=interactive
     )
     cluster_threshold = _resolve_float(
         console, "Cluster similarity threshold", args.cluster_threshold, DEFAULT_CLUSTER_THRESHOLD, interactive=interactive
     )
+    console.print(f"Clustering algorithm: {cluster_algo}")
 
     codes = [r.code for r in records]
-    sim = cosine_sim_matrix(build_tfidf_matrix(codes))
+    X = build_tfidf_matrix(codes)
+    sim = cosine_sim_matrix(X)
     pairs = find_pairs(codes, sim, pair_threshold)
-    clusters = find_clusters(codes, sim, cluster_threshold)
+    kmeans_info: dict | None = {} if cluster_algo in ("kmeans", "all") else None
+    if cluster_algo == "all":
+        clusters = find_clusters_all(codes, sim, X, cluster_threshold, info=kmeans_info)
+        kmeans_info = kmeans_info.get("kmeans")
+    elif cluster_algo == "dbscan":
+        clusters = find_clusters_dbscan(codes, sim, cluster_threshold)
+    elif cluster_algo == "kmeans":
+        clusters = find_clusters_kmeans(codes, sim, X, cluster_threshold, info=kmeans_info)
+    else:
+        clusters = find_clusters(codes, sim, cluster_threshold)
     report = build_report(pairs, clusters)
 
     relevance_path = args.relevance
@@ -128,6 +181,7 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
         ) or None
 
     relevance_flags = None
+    relevance_threshold = None
     if relevance_path:
         relevance_threshold = _resolve_float(
             console, "Relevance similarity threshold", args.relevance_threshold,
@@ -137,7 +191,34 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
             rq_texts = [line.strip() for line in f if line.strip()]
         relevance_flags = scan_relevance(codes, rq_texts, relevance_threshold)
 
-    render_report(console, records, report, relevance_flags)
+    params = build_run_parameters(
+        pykarsin_version=__version__,
+        python_version=platform.python_version(),
+        numpy_version=numpy.__version__,
+        sklearn_version=sklearn.__version__,
+        generated_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        csv_path=args.csv_path,
+        code_col=headers[mapping.code_idx],
+        comment_col=headers[mapping.comment_idx] if mapping.comment_idx is not None else None,
+        group_cols=[headers[i] for i in mapping.group_idxs],
+        include_merged=include_merged,
+        total_codes=len(all_records),
+        active_codes=len(active),
+        merged_codes=len(merged),
+        included_codes=len(records),
+        tfidf_analyzer=TFIDF_ANALYZER,
+        tfidf_ngram_range=TFIDF_NGRAM_RANGE,
+        pair_threshold=pair_threshold,
+        cluster_threshold=cluster_threshold,
+        cluster_algo=cluster_algo,
+        dbscan_min_samples=DBSCAN_MIN_SAMPLES,
+        kmeans_info=kmeans_info,
+        relevance_threshold=relevance_threshold,
+        relevance_min_length=RELEVANCE_MIN_LENGTH if relevance_threshold is not None else None,
+        relevance_path=relevance_path,
+    )
+
+    render_report(console, records, report, relevance_flags, params)
 
     export_format = args.export
     if interactive and export_format is None:
@@ -159,11 +240,11 @@ def run_scan(args: argparse.Namespace, console: Console) -> int:
         if export_format == "all":
             for fmt in ("csv", "markdown", "html"):
                 path = _export_target(args.csv_path, export_dir, fmt)
-                EXPORTERS[fmt](path, records, report, relevance_flags)
+                EXPORTERS[fmt](path, records, report, relevance_flags, params)
                 console.print(f"Exported to {path}")
         else:
             path = args.export_path or _export_target(args.csv_path, export_dir, export_format)
-            EXPORTERS[export_format](path, records, report, relevance_flags)
+            EXPORTERS[export_format](path, records, report, relevance_flags, params)
             console.print(f"Exported to {path}")
 
     return 0

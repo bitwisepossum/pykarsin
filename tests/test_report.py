@@ -4,7 +4,15 @@ from rich.console import Console
 
 from pykarsin.io_csv import CodeRecord
 from pykarsin.similarity import PairCandidate, ClusterCandidate, RelevanceFlag
-from pykarsin.report import build_report, render_report, render_dry_run_stats, export_csv, export_markdown, export_html
+from pykarsin.report import (
+    build_report,
+    build_run_parameters,
+    render_report,
+    render_dry_run_stats,
+    export_csv,
+    export_markdown,
+    export_html,
+)
 
 RECORDS = [
     CodeRecord(row=2, code="Foo A", comment=""),
@@ -171,3 +179,80 @@ def test_export_html_omits_relevance_section_when_not_scanned(tmp_path):
     export_html(str(path), RECORDS, report, relevance_flags=None)
     text = path.read_text(encoding="utf-8")
     assert 'class="relevance"' not in text  # legend still mentions relevance in general terms, but no section
+
+
+def _base_param_kwargs(**overrides):
+    kwargs = dict(
+        pykarsin_version="0.1.0",
+        python_version="3.13.0",
+        numpy_version="2.0.0",
+        sklearn_version="1.5.0",
+        generated_at="2026-01-01T00:00:00+00:00",
+        csv_path="book.csv",
+        code_col="Code",
+        comment_col="Comment",
+        group_cols=["Code Group 1"],
+        include_merged=False,
+        total_codes=10,
+        active_codes=9,
+        merged_codes=1,
+        included_codes=9,
+        tfidf_analyzer="char_wb",
+        tfidf_ngram_range=(3, 5),
+        pair_threshold=0.6,
+        cluster_threshold=0.5,
+        cluster_algo="unionfind",
+    )
+    kwargs.update(overrides)
+    return kwargs
+
+
+def test_build_run_parameters_omits_algo_specific_rows_for_unionfind():
+    params = dict(build_run_parameters(**_base_param_kwargs()))
+    assert "clustering algorithm" in params
+    assert "dbscan eps" not in params
+    assert "kmeans chosen k" not in params
+    assert "relevance threshold" not in params
+
+
+def test_build_run_parameters_includes_dbscan_rows():
+    params = dict(build_run_parameters(**_base_param_kwargs(cluster_algo="dbscan", dbscan_min_samples=2)))
+    assert params["dbscan eps"] == "0.5"
+    assert params["dbscan min_samples"] == "2"
+
+
+def test_build_run_parameters_includes_kmeans_rows():
+    kmeans_info = {"k": 4, "silhouette_score": 0.42, "k_search_range": (2, 8)}
+    params = dict(build_run_parameters(**_base_param_kwargs(cluster_algo="kmeans", kmeans_info=kmeans_info)))
+    assert params["kmeans chosen k"] == "4"
+    assert params["kmeans silhouette score"] == "0.420"
+    assert params["kmeans k search range"] == "2-8"
+
+
+def test_build_run_parameters_includes_relevance_rows_when_scanned():
+    params = dict(build_run_parameters(
+        **_base_param_kwargs(relevance_threshold=0.1, relevance_min_length=12, relevance_path="rq.txt")
+    ))
+    assert params["relevance threshold"] == "0.1"
+    assert params["relevance question file"] == "rq.txt"
+
+
+def test_render_and_export_include_run_parameters_section(tmp_path):
+    report = build_report([], [ClusterCandidate(members=[2, 3, 4], chaining_warning=True)])
+    params = build_run_parameters(**_base_param_kwargs())
+
+    console = Console(file=io.StringIO(), width=200)
+    render_report(console, RECORDS, report, params=params)
+    assert "Run parameters" in console.file.getvalue()
+
+    md_path = tmp_path / "out.md"
+    export_markdown(str(md_path), RECORDS, report, params=params)
+    assert "## Run parameters" in md_path.read_text(encoding="utf-8")
+
+    csv_path = tmp_path / "out.csv"
+    export_csv(str(csv_path), RECORDS, report, params=params)
+    assert "parameter" in csv_path.read_text(encoding="utf-8")
+
+    html_path = tmp_path / "out.html"
+    export_html(str(html_path), RECORDS, report, params=params)
+    assert "Run parameters" in html_path.read_text(encoding="utf-8")
